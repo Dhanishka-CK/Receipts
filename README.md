@@ -49,52 +49,46 @@ Wearing an **Omi** device, your ambient speech is continuously ingested with zer
 
 ---
 
-## 🧠 The Architectural Trifecta: How Receipts Deeply Leverages the Stack
+## 🏛️ System Architecture & The Execution Trifecta
 
-All hackathon participants must use Lyzr, Qdrant, and Omi. **Here is how Receipts takes each technology to its architectural limit:**
+All hackathon participants must integrate Lyzr, Qdrant, and Omi. **Receipts connects them into a unified, autonomous real-time execution loop:**
 
-```
-                                🎙️ OMI WEARABLE / HARDWARE
-                                [Continuous Ambient Voice Stream]
-                                               │
-                                               ▼ (POST /omi/realtime <2ms Ack)
-                           ┌────────────────────────────────────────┐
-                           │   FASTAPI UNIVERSAL WEBHOOK GATEWAY   │
-                           └───────────────────┬────────────────────┘
-                                               │ (Async Event Dispatch)
-                                               ▼
-         ┌───────────────────────────────────────────────────────────────────────────┐
-         │                    LYZR MULTI-AGENT SUPERFLOW (DAG)                       │
-         │                Superflow ID: cb77ed7e-777f-469e-9238-c6809195b8c0         │
-         │                                                                           │
-         │   [ ⚡ Webhook Trigger ]                                                   │
-         │            │                                                              │
-         │            ▼                                                              │
-         │   [ 🧠 Receipts Extractor ] ──▶ Extracts Commitments, Decisions & Claims   │
-         │            │                                                              │
-         │            ▼                                                              │
-         │   [ ⚖️ Receipts Auditor ]   ──▶ Evaluates Semantic Conflicts vs History    │
-         │            │                                                              │
-         │            ▼                                                              │
-         │   [ 🎯 Receipts Manager ]   ──▶ Governs Alert Policies & State Transitions │
-         └───────────────────────┬───────────────────────────┬───────────────────────┘
-                                 │                           │
-          (Sub-15ms Vector Recall│                           │ (State Machine Update)
-           & Hybrid Filtering)   ▼                           ▼
-                 ┌─────────────────────────────────────────────────┐
-                 │       QDRANT STATEFUL VECTOR MEMORY ENGINE       │
-                 │   - 384-d Cosine Embeddings (FastEmbed BAAI)    │
-                 │   - Point State Machine (OPEN/BLOCKED/DONE)     │
-                 │   - Temporal Deadline Indexing (deadline_ts)    │
-                 │   - Granular Privacy Isolation (visibility)     │
-                 └───────────────────────┬─────────────────────────┘
-                                         │
-                                         ▼ (Autonomous Overdue Scanner / Real-Time Conflict)
-                 ┌─────────────────────────────────────────────────┐
-                 │           AUTONOMOUS PROACTIVE ACTIONS          │
-                 │   🧾 Live Evidence-Backed Receipts Dashboard    │
-                 │   📱 Push Notifications directly to Omi Phone   │
-                 └─────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph INGESTION["1. Ingestion Layer"]
+        OMI["🎙️ Omi Wearable / Hardware"] -->|"POST /omi/realtime\nPOST /omi/conversation\n(<2ms Fast Ack)"| API["⚡ FastAPI Webhook Gateway"]
+        MIC["💬 Web Speech Input"] -->|"POST /ingest"| API
+    end
+
+    subgraph AGENTS["2. Multi-Agent Reasoning Swarm (Lyzr Superflow)"]
+        API -->|"Debounced Utterance"| EXT["🧠 Extractor Agent\n(Extracts commitments, decisions, claims)"]
+        EXT -->|"Semantic Query"| RETRIEVE["🔍 Qdrant Semantic Search\n(384-d Cosine Similarity)"]
+        RETRIEVE -->|"Candidates + History"| AUD["⚖️ Auditor Agent\n(Detects contradictions, dependencies, duplicates)"]
+        AUD -->|"Finding + Evidence"| MGR["🎯 Manager Agent\n(Decides action, state updates, alert necessity)"]
+    end
+
+    subgraph MEMORY["3. Persistent State Engine (Qdrant)"]
+        MGR -->|"Update Memory / Store Vector"| QDRANT[("🗄️ Qdrant Memory Collection\nPayloads: uid, status, deadline_ts, visibility")]
+    end
+
+    subgraph AUTONOMOUS["4. Autonomous Proactive Actions"]
+        MGR -->|"Evidence-Backed Receipt"| RECEIPT["🧾 Receipts Engine"]
+        RECEIPT --> DASH["🖥️ Live Interactive Dashboard"]
+        RECEIPT --> PHONE["📱 Omi Mobile Notification"]
+        
+        SCHED["⏰ Autonomous Overdue Scanner\n(Runs every 30s)"] -->|"status=OPEN & deadline < now"| QDRANT
+        SCHED -->|"Overdue Trigger"| MGR
+    end
+
+    subgraph PRIVACY_LAYER["5. Privacy & Forgetting Engine"]
+        PRIVACY["🔒 Privacy Controls"] -->|"Voice: 'Forget about X'\nManual: Delete / Private Session"| QDRANT
+    end
+
+    style INGESTION fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#fff
+    style AGENTS fill:#0f172a,stroke:#a78bfa,stroke-width:2px,color:#fff
+    style MEMORY fill:#0f172a,stroke:#34d399,stroke-width:2px,color:#fff
+    style AUTONOMOUS fill:#0f172a,stroke:#f87171,stroke-width:2px,color:#fff
+    style PRIVACY_LAYER fill:#0f172a,stroke:#fbbf24,stroke-width:2px,color:#fff
 ```
 
 ---
