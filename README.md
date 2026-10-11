@@ -8,11 +8,11 @@
 ## 🏆 Hackathon Submission Details
 
 - **Hackathon:** The Dawn of the Autonomous AI Builder
-- **Organizers:** AI House × HiDevs
+- **Organizers:** Lyzr × Qdrant × Omi
 - **Mandatory Stack Integrated:**
   - **Omi:** Continuous voice stream ingestion via webhooks & phone push notifications
   - **Qdrant:** Persistent vector database with semantic retrieval and metadata state filtering
-  - **Lyzr:** Multi-agent reasoning swarm (**Extractor** ➔ **Auditor** ➔ **Manager**)
+  - **Lyzr:** Multi-agent reasoning swarm (**Extractor** ➔ **Auditor** ➔ **Manager**) and Superflows
 
 ---
 
@@ -190,8 +190,8 @@ The built-in dashboard features a 1-click **Judge Walkthrough Controller** execu
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/dhani/receipts.git
-cd receipts
+git clone https://github.com/Dhanishka-CK/Receipts.git
+cd Receipts
 python -m venv venv
 # Windows:
 .\venv\Scripts\activate
