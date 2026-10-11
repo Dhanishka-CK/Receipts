@@ -291,8 +291,3 @@ docker-compose up --build
 | `POST` | `/demo/step` | Run specific step (1-6) of the judge demo scenario |
 | `POST` | `/demo/overdue-check` | Trigger autonomous overdue scheduler check |
 
----
-
-## 🎬 Demo Video Guide
-A complete teleprompter script and recording walkthrough for your hackathon submission video is available in [`DEMO_VIDEO_GUIDE.md`](DEMO_VIDEO_GUIDE.md).
-
