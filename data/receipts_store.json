@@ -1,0 +1,80 @@
+[
+  {
+    "id": 25,
+    "uid": "t1",
+    "kind": "overdue",
+    "headline": "\u23f0 Overdue Commitment",
+    "message": "Open commitment is overdue: \"I'll send the report tomorrow.\"",
+    "statement": "I'll send the report tomorrow.",
+    "evidence": "Committed on 2026-10-09 with deadline tomorrow",
+    "confidence": 1.0,
+    "groundedness": 1.0,
+    "grounding_source": "Qdrant Vector ID e79ea13c",
+    "telemetry": {},
+    "importance": "high",
+    "action_taken": "overdue_alert",
+    "target_id": "e79ea13c-64b0-42b2-9107-78827071d371",
+    "key": "overdue:e79ea13c-64b0-42b2-9107-78827071d371:Open commitment is overdue: \"I'll send the report tomorrow.\"",
+    "ts": 1791712898.318969,
+    "resolved": false,
+    "pushed": false
+  },
+  {
+    "id": 26,
+    "uid": "t1",
+    "kind": "possible_contradiction",
+    "headline": "\u26a0 Possible Contradiction",
+    "message": "Possible contradiction. Earlier: \"The API is blocked because authentication isn't working.\". Now: \"We're still blocked because authentication isn't ready.\". Still current?",
+    "statement": "We're still blocked because authentication isn't ready.",
+    "evidence": "The API is blocked because authentication isn't working.",
+    "confidence": 0.9,
+    "groundedness": 1.0,
+    "grounding_source": "Qdrant Vector ID fd403025",
+    "telemetry": {
+      "latencies": {
+        "extractor_ms": 0.05,
+        "qdrant_retrieval_ms": 1.86,
+        "auditor_ms": 0.02,
+        "manager_ms": 0.02,
+        "total_pipeline_ms": 21.91
+      },
+      "verified_grounding": true
+    },
+    "importance": "high",
+    "action_taken": "alert",
+    "target_id": "fd403025-66b8-4ba0-a9d7-7174b3fae039",
+    "key": "possible_contradiction:fd403025-66b8-4ba0-a9d7-7174b3fae039:Possible contradiction. Earlier: \"The API is blocked because authentication isn't working.\". Now: \"We're still blocked because authentication isn't ready.\". Still current?",
+    "ts": 1791712898.3936415,
+    "resolved": true,
+    "pushed": false
+  },
+  {
+    "id": 27,
+    "uid": "t1",
+    "kind": "decision_changed",
+    "headline": "\ud83d\udd04 Decision Changed",
+    "message": "Decision changed. Before: \"Let's use PostgreSQL for the database.\". Now: \"We're going with MongoDB.\".",
+    "statement": "We're going with MongoDB.",
+    "evidence": "Let's use PostgreSQL for the database.",
+    "confidence": 0.9,
+    "groundedness": 1.0,
+    "grounding_source": "Qdrant Vector ID c7c778f3",
+    "telemetry": {
+      "latencies": {
+        "extractor_ms": 0.06,
+        "qdrant_retrieval_ms": 2.55,
+        "auditor_ms": 0.02,
+        "manager_ms": 0.01,
+        "total_pipeline_ms": 28.24
+      },
+      "verified_grounding": true
+    },
+    "importance": "high",
+    "action_taken": "alert",
+    "target_id": "c7c778f3-7e75-403a-8039-74c81965a423",
+    "key": "decision_changed:c7c778f3-7e75-403a-8039-74c81965a423:Decision changed. Before: \"Let's use PostgreSQL for the database.\". Now: \"We're going with MongoDB.\".",
+    "ts": 1791712898.425433,
+    "resolved": false,
+    "pushed": false
+  }
+]

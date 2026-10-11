@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Receipts — Autonomous Voice Memory & Conflict Detection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #0f141c;
+      --bg-surface: #171f2c;
+      --bg-card: #1f2a3c;
+      --bg-subtle: #253349;
+      --border: #2d3c52;
+      --border-focus: #4b6387;
+      --text-main: #f0f4f8;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-primary: #38bdf8;
+      --accent-hover: #0284c7;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --purple: #a78bfa;
+      --receipt-bg: #fffdf7;
+      --receipt-ink: #181c20;
+      --receipt-mute: #5a6470;
+      --receipt-border: #e2dcd2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-base);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    /* Header */
+    header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-group { display: flex; align-items: baseline; gap: 14px; }
+    .brand-title {
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-title span { color: var(--accent-primary); }
+    .brand-tagline { color: var(--text-muted); font-size: 14px; }
+    .status-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
+      animation: pulse 2s infinite;
+    }
+    .status-dot.yellow { background: var(--warning); box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    .user-select {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      padding: 4px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .user-select label { font-size: 12px; color: var(--text-dim); }
+    .user-select input {
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      width: 75px;
+      outline: none;
+    }
+
+    /* Autonomous Pipeline Visualization */
+    .pipeline-container {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 32px;
+    }
+    .pipeline-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .pipeline-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .pipe-node {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .pipe-node.active {
+      border-color: var(--accent-primary);
+      color: #fff;
+      background: var(--bg-subtle);
+    }
+    .pipe-arrow { color: var(--text-dim); font-size: 12px; }
+
+    /* Agent Telemetry & Benchmarks Bar */
+    .metrics-bar {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 24px;
+      font-size: 12px;
+    }
+    .metric-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .metric-icon {
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+    .metric-content {
+      display: flex;
+      flex-direction: column;
+    }
+    .metric-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .metric-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .metric-value.success { color: var(--success); }
+    .metric-value.accent { color: var(--accent-primary); }
+    .badge-latency {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+
+    /* Main Container */
+    .app-body {
+      max-width: 1540px;
+      margin: 0 auto;
+      padding: 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Top Grid: Latest Receipt & Action Deck */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; } }
+
+    /* The Receipt Card */
+    .receipt-card {
+      background: var(--receipt-bg);
+      color: var(--receipt-ink);
+      border-radius: 8px;
+      padding: 24px 28px;
+      border: 1px solid var(--receipt-border);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .receipt-card::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: radial-gradient(circle, transparent, transparent 50%, var(--receipt-bg) 50%, var(--receipt-bg) 100%);
+      background-size: 12px 12px;
+    }
+    .receipt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      border-bottom: 1px dashed var(--receipt-border);
+      padding-bottom: 12px;
+    }
+    .receipt-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-contradiction { background: #fee2e2; color: #991b1b; }
+    .badge-decision { background: #ede9fe; color: #5b21b6; }
+    .badge-blocker { background: #fef3c7; color: #92400e; }
+    .badge-overdue { background: #fee2e2; color: #b91c1c; }
+    .badge-default { background: #e0f2fe; color: #0369a1; }
+    .receipt-time { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--receipt-mute); }
+
+    .receipt-statement {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 14px;
+      color: #0f172a;
+    }
+    .receipt-evidence-box {
+      background: #f4ede2;
+      border-left: 3px solid #d97706;
+      padding: 10px 14px;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+    .receipt-evidence-box b { color: #78350f; display: block; margin-bottom: 2px; font-size: 11px; text-transform: uppercase; }
+    .receipt-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--receipt-mute);
+      padding-top: 12px;
+      border-top: 1px dashed var(--receipt-border);
+    }
+    .receipt-actions { display: flex; gap: 8px; }
+    .btn-receipt {
+      background: var(--receipt-ink);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-receipt:hover { opacity: 0.85; }
+
+    /* Interactive Control Deck */
+    .control-deck {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .input-box-wrapper { display: flex; flex-direction: column; gap: 8px; }
+    .deck-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-main);
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: vertical;
+      min-height: 58px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    textarea:focus { border-color: var(--accent-primary); }
+    .action-row { display: flex; gap: 10px; }
+    .btn-primary {
+      background: var(--accent-primary);
+      color: #0b1320;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-ghost {
+      background: var(--bg-subtle);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: var(--border); color: #fff; }
+
+    /* Judge Walkthrough Strip */
+    .judge-walkthrough {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .judge-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--warning);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .step-buttons { display: flex; flex-wrap: wrap; gap: 6px; }
+    .step-btn {
+      background: var(--bg-subtle);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 6px 11px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.2s;
+    }
+    .step-btn:hover { border-color: var(--accent-primary); background: var(--border); }
+
+    /* Three Column Dashboard Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr 0.9fr;
+      gap: 24px;
+    }
+    @media (max-width: 1200px) { .dashboard-grid { grid-template-columns: 1fr; } }
+
+    .panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-height: 720px;
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .panel-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge-count {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 99px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .scroll-body {
+      overflow-y: auto;
+      padding-right: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .scroll-body::-webkit-scrollbar { width: 5px; }
+    .scroll-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* Trace Events */
+    .trace-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+    }
+    .trace-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+    }
+    .trace-step {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .trace-time { color: var(--text-dim); }
+    .step-OMI { color: #38bdf8; }
+    .step-EXTRACTOR { color: #a78bfa; }
+    .step-QDRANT { color: #34d399; }
+    .step-AUDITOR { color: #fbbf24; }
+    .step-MANAGER { color: #f472b6; }
+    .step-RECEIPT { color: #f87171; }
+    .step-SCHEDULER { color: #e879f9; }
+    .step-PRIVACY { color: #94a3b8; }
+    .trace-detail { color: var(--text-muted); word-break: break-word; }
+    details pre {
+      background: var(--bg-base);
+      padding: 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 6px;
+      color: #cbd5e1;
+      overflow-x: auto;
+    }
+
+    /* Cards in Feed */
+    .card-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .card-header-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .status-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .tag-OPEN { background: rgba(251, 191, 36, 0.15); color: var(--warning); border: 1px solid rgba(251, 191, 36, 0.3); }
+    .tag-BLOCKED { background: rgba(248, 113, 113, 0.15); color: var(--danger); border: 1px solid rgba(248, 113, 113, 0.3); }
+    .tag-DONE, .tag-RESOLVED { background: rgba(52, 211, 153, 0.15); color: var(--success); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .tag-ACTIVE { background: rgba(56, 189, 248, 0.15); color: var(--accent-primary); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .tag-SUPERSEDED { background: rgba(148, 163, 184, 0.15); color: var(--text-dim); text-decoration: line-through; border: 1px solid var(--border); }
+
+    .card-text { font-size: 13px; color: var(--text-main); font-weight: 500; }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .btn-mini-delete {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .btn-mini-delete:hover { color: var(--danger); border-color: var(--danger); }
+
+    /* Tab switcher */
+    .tab-bar {
+      display: flex;
+      gap: 6px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: var(--bg-card);
+      color: var(--accent-primary);
+    }
+
+    .empty-state {
+      padding: 24px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header>
+    <div class="brand-group">
+      <div class="brand-title">RECEIPTS<span>.</span></div>
+      <div class="brand-tagline">Autonomous memory for what was promised, decided, and said.</div>
+    </div>
+    <div class="status-strip">
+      <div class="status-pill" title="Omi Voice Webhook Listener Active">
+        <span class="status-dot"></span> Omi Voice: Ready
+      </div>
+      <div class="status-pill" title="Qdrant Vector Engine Persistent">
+        <span class="status-dot"></span> Qdrant: Persistent
+      </div>
+      <div class="status-pill" title="Lyzr Multi-Agent Swarm (Extractor, Auditor, Manager)">
+        <span class="status-dot" id="lyzr-dot"></span> <span id="lyzr-label">Lyzr: 3 Agents</span>
+      </div>
+      <div class="user-select" title="Autonomous Voice Listener Active">
+        <span class="status-dot"></span>
+        <span id="active-user-badge" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-main);font-weight:600;">Speaker: Omi Wearable</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Autonomous Pipeline Flow Bar -->
+  <div class="pipeline-container">
+    <div class="pipeline-title">Autonomous Execution Pipeline</div>
+    <div class="pipeline-flow">
+      <div class="pipe-node active" id="pipe-omi">🎙️ 1. Omi Voice</div>
+      <span class="pipe-arrow">➔</span>
+      <div class="pipe-node" id="pipe-ext">🧠 2. Extractor Agent</div>
+      <span class="pipe-arrow">➔</span>
+      <div class="pipe-node" id="pipe-qdrant">🗄️ 3. Qdrant Vector Memory</div>
+      <span class="pipe-arrow">➔</span>
+      <div class="pipe-node" id="pipe-auditor">⚖️ 4. Auditor Agent</div>
+      <span class="pipe-arrow">➔</span>
+      <div class="pipe-node" id="pipe-manager">🎯 5. Manager Agent</div>
+      <span class="pipe-arrow">➔</span>
+      <div class="pipe-node" id="pipe-receipt">🧾 6. Proactive Receipt</div>
+    </div>
+  </div>
+
+  <!-- Agent Telemetry & Grounding Strip -->
+  <div class="metrics-bar">
+    <div class="metric-item" title="End-to-End latency percentiles measured across all agent inferences">
+      <span class="metric-icon">⚡</span>
+      <div class="metric-content">
+        <span class="metric-label">Pipeline Latency (p50 / p95)</span>
+        <span class="metric-value accent" id="metric-latency">Initializing...</span>
+      </div>
+    </div>
+    <div class="metric-item" title="Cryptographically verified against Qdrant Vector IDs — 0% hallucination permitted">
+      <span class="metric-icon">🛡️</span>
+      <div class="metric-content">
+        <span class="metric-label">Hallucination Guard</span>
+        <span class="metric-value success" id="metric-groundedness">100% Grounded</span>
+      </div>
+    </div>
+    <div class="metric-item" title="Stateful working memory with vector lookup + payload index">
+      <span class="metric-icon">🗄️</span>
+      <div class="metric-content">
+        <span class="metric-label">Qdrant Agentic Memory</span>
+        <span class="metric-value" id="metric-qdrant">FastEmbed Cosine Index</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-body">
+
+    <!-- Hero Row: Latest Evidence Receipt & Control Deck -->
+    <div class="hero-grid">
+      
+      <!-- Latest Receipt Highlight -->
+      <div class="receipt-card" id="latest-receipt-box">
+        <div>
+          <div class="receipt-header">
+            <span class="receipt-badge badge-default" id="receipt-badge">Waiting for input</span>
+            <span class="receipt-time" id="receipt-time">--:--:--</span>
+          </div>
+          <div class="receipt-statement" id="receipt-statement">
+            "Receipts is actively listening through Omi to capture commitments, decisions, and dependencies."
+          </div>
+          <div class="receipt-evidence-box" id="receipt-evidence-box" style="display:none;">
+            <b>Historical Evidence (from Qdrant)</b>
+            <span id="receipt-evidence-text">No contradiction detected.</span>
+          </div>
+        </div>
+        <div class="receipt-meta">
+          <span id="receipt-confidence">Confidence: --</span>
+          <div class="receipt-actions">
+            <button class="btn-receipt" id="receipt-resolve-btn" style="display:none;">Mark Resolved</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Control Deck & Judge Scenario Runner -->
+      <div class="control-deck">
+        <div class="input-box-wrapper">
+          <div class="deck-label">Live Spoken Utterance or Query</div>
+          <textarea id="txt-input" placeholder="Speak or paste what was said, e.g. “Authentication is fixed now. We'll ship Friday.”"></textarea>
+          <div class="action-row">
+            <button class="btn-primary" id="btn-send">🎙️ Ingest Speech</button>
+            <button class="btn-ghost" id="btn-ask">🔍 Ask Memories</button>
+            <button class="btn-ghost" id="btn-overdue">⏰ Check Overdue</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3-Column Work Area: Observable Trace, Receipts Log, Memory Store -->
+    <div class="dashboard-grid">
+      
+      <!-- Column 1: Observable Agent Trace -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Observable Agent Workflow <span class="badge-count" id="trace-count">0</span></div>
+          <button class="btn-mini-delete" onclick="events=[];$('trace-list').innerHTML='';">Clear</button>
+        </div>
+        <div class="scroll-body" id="trace-list">
+          <div class="empty-state">No agent trace events yet. Ingest a statement to watch the agents execute.</div>
+        </div>
+      </div>
+
+      <!-- Column 2: Receipts & Alerts -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Receipts & Alerts <span class="badge-count" id="receipts-count">0</span></div>
+        </div>
+        <div class="scroll-body" id="alerts-list">
+          <div class="empty-state">No proactive alerts issued.</div>
+        </div>
+      </div>
+
+      <!-- Column 3: Memory Vault (Commitments, Decisions, Privacy) -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Memory Vault <span class="badge-count" id="mems-count">0</span></div>
+        </div>
+        <div class="tab-bar">
+          <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">All Memory</button>
+          <button class="tab-btn" id="tab-commitments" onclick="switchTab('commitments')">Commitments</button>
+          <button class="tab-btn" id="tab-decisions" onclick="switchTab('decisions')">Decisions</button>
+          <button class="tab-btn" id="tab-claims" onclick="switchTab('claims')">Claims</button>
+          <button class="tab-btn" id="tab-privacy" onclick="switchTab('privacy')">Privacy</button>
+        </div>
+        <div class="scroll-body" id="memory-list">
+          <div class="empty-state">No memories recorded yet. Speak via Omi or use the input box to start.</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const getUid = () => "";
+    const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+    let currentTab = "all";
+    let events = [];
+    let currentReceiptId = null;
+
+    async function post(url, data) {
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data || {})
+        });
+        return await res.json();
+      } catch (e) {
+        console.error("API error:", e);
+      }
+    }
+
+    async function tick() {
+      // 1. Fetch trace
+      const since = events.length ? events[events.length - 1].n : 0;
+      const newEvents = await (await fetch("/trace?since=" + since)).json();
+      if (newEvents && newEvents.length) {
+        events = events.concat(newEvents);
+        renderTrace();
+      }
+
+      // 2. Fetch receipts/alerts
+      const alerts = await (await fetch("/receipts")).json();
+      renderAlerts(alerts);
+
+      // 3. Render Memory Tab
+      await renderMemoryTab();
+
+      // 4. Update health/status & agent telemetry metrics
+      updateHealthStatus();
+      updateMetrics();
+    }
+
+    async function updateMetrics() {
+      try {
+        const m = await (await fetch("/metrics")).json();
+        if (m && m.latencies_ms) {
+          const e2e = m.latencies_ms.e2e || {};
+          $("metric-latency").textContent = `${e2e.p50 || 0}ms (p50) / ${e2e.p95 || 0}ms (p95)`;
+          const sum = m.summary || {};
+          $("metric-groundedness").textContent = `${sum.groundedness_rate_percent}% Grounded (${sum.hallucinations_suppressed} Suppressed)`;
+          if ($("metric-kb") && sum.knowledge_base_grounding && sum.knowledge_base_grounding.playbook) {
+            $("metric-kb").textContent = sum.knowledge_base_grounding.playbook;
+          }
+          if (sum.qdrant_vector_queries !== undefined) {
+            const qAvg = (m.latencies_ms.qdrant_vector_search || {}).avg || 0;
+            $("metric-qdrant").textContent = `${sum.qdrant_vector_queries} Lookups (${qAvg}ms avg)`;
+          }
+        }
+      } catch (e) {}
+    }
+
+    function renderTrace() {
+      $("trace-count").textContent = events.length;
+      if (!events.length) return;
+      const html = events.slice(-40).reverse().map(e => {
+        const stepClass = "step-" + (e.step || "").replace(/[^a-zA-Z]/g, "").toUpperCase();
+        const latBadge = e.latency_ms ? `<span class="badge-latency">⏱️ ${e.latency_ms}ms</span>` : "";
+        let detailHtml = typeof e.detail === "string" ? esc(e.detail) : `<details><summary>Payload</summary><pre>${esc(JSON.stringify(e.detail, null, 2))}</pre></details>`;
+        return `
+          <div class="trace-item">
+            <div class="trace-meta">
+              <span class="trace-step ${stepClass}">${esc(e.step)}</span>
+              ${latBadge}
+              <span class="trace-time">${esc(e.time_str || '')} [${esc(e.status)}]</span>
+            </div>
+            <div class="trace-detail">${detailHtml}</div>
+          </div>
+        `;
+      }).join("");
+      $("trace-list").innerHTML = html;
+    }
+
+    function renderAlerts(alerts) {
+      $("receipts-count").textContent = alerts.length;
+      if (!alerts.length) {
+        $("alerts-list").innerHTML = '<div class="empty-state">No proactive alerts generated yet.</div>';
+        return;
+      }
+
+      // Update Latest Receipt Box with newest alert
+      const top = alerts[0];
+      if (top) {
+        $("receipt-badge").textContent = top.headline || top.kind.replace("_", " ").toUpperCase();
+        $("receipt-badge").className = "receipt-badge " + (top.kind.includes("contradiction") ? "badge-contradiction" : top.kind.includes("decision") ? "badge-decision" : "badge-blocker");
+        $("receipt-statement").textContent = top.message || top.statement || "";
+        $("receipt-time").textContent = new Date(top.ts * 1000).toLocaleTimeString();
+        const groundStr = top.groundedness !== undefined ? ` · <span style="color:var(--success)">🛡️ Grounded: ${(top.groundedness * 100).toFixed(0)}%</span>` : "";
+        $("receipt-confidence").innerHTML = `Confidence: ${(top.confidence * 100).toFixed(0)}%${groundStr}`;
+
+        if (top.evidence) {
+          $("receipt-evidence-box").style.display = "block";
+          $("receipt-evidence-text").textContent = top.evidence;
+        } else {
+          $("receipt-evidence-box").style.display = "none";
+        }
+
+        if (!top.resolved) {
+          $("receipt-resolve-btn").style.display = "inline-block";
+          $("receipt-resolve-btn").onclick = async () => {
+            await post(`/alerts/${top.id}/resolve`);
+            tick();
+          };
+        } else {
+          $("receipt-resolve-btn").style.display = "none";
+        }
+      }
+
+      // Render alerts list
+      $("alerts-list").innerHTML = alerts.map(a => `
+        <div class="card-item">
+          <div class="card-header-line">
+            <span class="status-tag tag-BLOCKED">${esc(a.headline || a.kind)}</span>
+            <small style="color:var(--text-dim);font-family:monospace">${new Date(a.ts * 1000).toLocaleTimeString()}</small>
+          </div>
+          <div class="card-text">${esc(a.message)}</div>
+          ${a.evidence ? `<div style="font-size:12px;color:var(--warning);background:rgba(251,191,36,0.1);padding:4px 8px;border-radius:4px;">Evidence: ${esc(a.evidence)}</div>` : ''}
+          <div class="card-footer">
+            <span>Confidence: ${(a.confidence * 100).toFixed(0)}%</span>
+            ${a.resolved ? '<span style="color:var(--success)">Resolved</span>' : `<button class="btn-mini-delete" onclick="resolveAlert(${a.id})">Mark Outdated</button>`}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    let userEverSwitchedTab = false;
+
+    async function renderMemoryTab() {
+      if (currentTab === "privacy") {
+        $("memory-list").innerHTML = `
+          <div class="card-item">
+            <div class="card-text"><b>Privacy & Forgetting Controls</b></div>
+            <p style="font-size:12px;color:var(--text-muted)">Private memories are never sent to agents or retrieved in semantic search.</p>
+            <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px;">
+              <input id="forget-topic-input" placeholder="Topic to forget, e.g. authentication" style="background:var(--bg-subtle);border:1px solid var(--border);padding:6px 10px;border-radius:4px;color:#fff;">
+              <button class="btn-ghost" onclick="forgetTopic()">Forget Topic</button>
+              <button class="btn-ghost" onclick="forgetMinutes(15)">Forget Last 15 Minutes</button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const allMems = await (await fetch("/memories")).json();
+      const comms = allMems.filter(m => m.kind === "commitment");
+      const decs = allMems.filter(m => m.kind === "decision");
+      const claims = allMems.filter(m => m.kind === "claim");
+
+      $("tab-all").textContent = `All (${allMems.length})`;
+      $("tab-commitments").textContent = `Commitments (${comms.length})`;
+      $("tab-decisions").textContent = `Decisions (${decs.length})`;
+      if ($("tab-claims")) $("tab-claims").textContent = `Claims (${claims.length})`;
+
+      let mems = allMems;
+      if (currentTab === "commitments") mems = comms;
+      else if (currentTab === "decisions") mems = decs;
+      else if (currentTab === "claims") mems = claims;
+
+      $("mems-count").textContent = mems.length;
+
+      if (!mems.length) {
+        $("memory-list").innerHTML = '<div class="empty-state">No records found for this view.</div>';
+        return;
+      }
+
+      $("memory-list").innerHTML = mems.map(m => `
+        <div class="card-item">
+          <div class="card-header-line">
+            <span class="status-tag tag-${esc(m.status)}">${esc(m.status)}</span>
+            <small style="color:var(--text-dim);font-family:monospace">${esc(m.kind)} · ${esc(m.subject)}</small>
+          </div>
+          <div class="card-text">${esc(m.text)}</div>
+          <div class="card-footer">
+            <span>${m.deadline_iso ? 'Due: ' + esc(m.deadline_iso.slice(0, 10)) : (m.person || 'you')}</span>
+            <button class="btn-mini-delete" onclick="deleteMemory('${m.id}')">Forget</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      ["all", "commitments", "decisions", "claims", "privacy"].forEach(t => {
+        const el = $(`tab-${t}`);
+        if (el) el.className = t === tab ? "tab-btn active" : "tab-btn";
+      });
+      renderMemoryTab();
+    }
+
+    async function deleteMemory(id) {
+      await fetch(`/memories/${id}`, { method: "DELETE" });
+      tick();
+    }
+
+    async function resolveAlert(aid) {
+      await post(`/alerts/${aid}/resolve`);
+      tick();
+    }
+
+    async function forgetTopic() {
+      const topic = $("forget-topic-input").value.trim();
+      if (!topic) return;
+      await post("/forget", { topic: topic });
+      switchTab("all");
+      tick();
+    }
+
+    async function forgetMinutes(mins) {
+      await post("/forget", { minutes: mins });
+      switchTab("all");
+      tick();
+    }
+
+    async function updateHealthStatus() {
+      try {
+        const s = await (await fetch("/status")).json();
+        if (s && s.last_active_uid && $("active-user-badge")) {
+          $("active-user-badge").textContent = `Speaker: ${s.last_active_uid.slice(0, 8)}...`;
+        }
+        const h = await (await fetch("/health")).json();
+        $("lyzr-label").textContent = h.mock_agents ? "Lyzr: Mock Swarm" : "Lyzr: Production API";
+        $("lyzr-dot").className = h.mock_agents ? "status-dot yellow" : "status-dot";
+      } catch (e) {}
+    }
+
+    // Button event listeners
+    $("btn-send").onclick = async () => {
+      const text = $("txt-input").value.trim();
+      if (!text) return;
+      $("txt-input").value = "";
+      await post("/ingest", { text: text, session_id: "web" });
+      tick();
+    };
+
+    $("btn-ask").onclick = async () => {
+      const text = $("txt-input").value.trim();
+      if (!text) return;
+      const res = await post("/ask", { query: text });
+      if (res && res.answer) {
+        alert("Receipts Memory Answer:\n\n" + res.answer);
+      }
+    };
+
+    $("btn-overdue").onclick = async () => {
+      await post("/demo/overdue-check", {});
+      tick();
+    };
+
+    $("txt-input").addEventListener("keydown", e => {
+      if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+        $("btn-send").click();
+      }
+    });
+
+    // Initial tick & interval
+    tick();
+    setInterval(tick, 2000);
+  </script>
+</body>
+</html>
