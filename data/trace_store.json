@@ -1,1778 +1,5 @@
 [
   {
-    "n": 1,
-    "t": 1791700760.0,
-    "time_str": "12:09:20",
-    "run": "a1b2c3",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Incoming voice: 'The project will be completed by Friday.'",
-    "latency_ms": null
-  },
-  {
-    "n": 2,
-    "t": 1791700762.5,
-    "time_str": "12:09:22",
-    "run": "a1b2c3",
-    "step": "Extractor",
-    "status": "extracted",
-    "detail": {
-      "kind": "claim",
-      "subject": "project",
-      "text": "The project will be completed by Friday.",
-      "speaker": "team"
-    },
-    "latency_ms": 2512.1
-  },
-  {
-    "n": 3,
-    "t": 1791700763.4,
-    "time_str": "12:09:23",
-    "run": "a1b2c3",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored claim (project) -> ID 0695aeeb",
-    "latency_ms": 890.3
-  },
-  {
-    "n": 4,
-    "t": 1791700780.0,
-    "time_str": "12:09:40",
-    "run": "b2c3d4",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Incoming voice: 'The project will be completed by Sunday.'",
-    "latency_ms": null
-  },
-  {
-    "n": 5,
-    "t": 1791700783.2,
-    "time_str": "12:09:43",
-    "run": "b2c3d4",
-    "step": "Extractor",
-    "status": "extracted",
-    "detail": {
-      "kind": "commitment",
-      "subject": "project",
-      "text": "The project will be completed by Sunday.",
-      "deadline_phrase": "by Sunday"
-    },
-    "latency_ms": 3210.4
-  },
-  {
-    "n": 6,
-    "t": 1791700784.1,
-    "time_str": "12:09:44",
-    "run": "b2c3d4",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 1 related memory for 'project': ID 0695aeeb",
-    "latency_ms": 563.1
-  },
-  {
-    "n": 7,
-    "t": 1791700787.0,
-    "time_str": "12:09:47",
-    "run": "b2c3d4",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "possible_contradiction",
-      "target_id": "0695aeeb-8d43-47fc-937b-c843be26a203",
-      "confidence": 0.88,
-      "explanation": "Earlier statement committed to Friday, but current statement commits to Sunday."
-    },
-    "latency_ms": 2890.5
-  },
-  {
-    "n": 8,
-    "t": 1791700789.2,
-    "time_str": "12:09:49",
-    "run": "b2c3d4",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "alert",
-      "alert_message": "Possible contradiction: earlier says the project will be completed by Friday, but now says by Sunday. Is Friday still current?",
-      "importance": "medium"
-    },
-    "latency_ms": 2210.3
-  },
-  {
-    "n": 9,
-    "t": 1791700789.3,
-    "time_str": "12:09:49",
-    "run": "b2c3d4",
-    "step": "Receipt",
-    "status": "issued",
-    "detail": "Receipt #2 generated: \u26a0 Possible Contradiction (100% Grounded against Qdrant Vector ID 0695aeeb)",
-    "latency_ms": null
-  },
-  {
-    "n": 10,
-    "t": 1791700920.0,
-    "time_str": "12:12:00",
-    "run": "c3d4e5",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Incoming voice: 'This is a data-intensive application, so we should plan accordingly.'",
-    "latency_ms": null
-  },
-  {
-    "n": 11,
-    "t": 1791700922.3,
-    "time_str": "12:12:02",
-    "run": "c3d4e5",
-    "step": "Extractor",
-    "status": "extracted",
-    "detail": {
-      "kind": "claim",
-      "subject": "application",
-      "text": "This is a data-intensive application, so we should plan accordingly."
-    },
-    "latency_ms": 2315.6
-  },
-  {
-    "n": 12,
-    "t": 1791700923.0,
-    "time_str": "12:12:03",
-    "run": "c3d4e5",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored claim (application) -> ID a13a0c03",
-    "latency_ms": 680.1
-  },
-  {
-    "n": 13,
-    "t": 1791700930.0,
-    "time_str": "12:12:10",
-    "run": "d4e5f6",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Incoming voice: 'This is going to be a compute-intensive application.'",
-    "latency_ms": null
-  },
-  {
-    "n": 14,
-    "t": 1791700932.4,
-    "time_str": "12:12:12",
-    "run": "d4e5f6",
-    "step": "Extractor",
-    "status": "extracted",
-    "detail": {
-      "kind": "claim",
-      "subject": "application",
-      "text": "This is going to be a compute-intensive application."
-    },
-    "latency_ms": 2474.8
-  },
-  {
-    "n": 15,
-    "t": 1791700933.1,
-    "time_str": "12:12:13",
-    "run": "d4e5f6",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 1 related memory for 'application': ID a13a0c03",
-    "latency_ms": 565.1
-  },
-  {
-    "n": 16,
-    "t": 1791700936.5,
-    "time_str": "12:12:16",
-    "run": "d4e5f6",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "possible_contradiction",
-      "target_id": "a13a0c03-33b8-4a50-a1db-125497fc12e7",
-      "confidence": 0.81,
-      "explanation": "Earlier says this is data-intensive, but now says compute-intensive."
-    },
-    "latency_ms": 3516.9
-  },
-  {
-    "n": 17,
-    "t": 1791700939.8,
-    "time_str": "12:12:19",
-    "run": "d4e5f6",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "alert",
-      "alert_message": "Possible contradiction: earlier says this is data-intensive, but now says compute-intensive. Is the earlier statement still current?",
-      "importance": "medium"
-    },
-    "latency_ms": 3310.2
-  },
-  {
-    "n": 18,
-    "t": 1791700940.0,
-    "time_str": "12:12:20",
-    "run": "d4e5f6",
-    "step": "Receipt",
-    "status": "issued",
-    "detail": "Receipt #3 generated: \u26a0 Possible Contradiction (100% Grounded against Qdrant Vector ID a13a0c03)",
-    "latency_ms": null
-  },
-  {
-    "n": 19,
-    "t": 1791709091.3979158,
-    "time_str": "14:28:11",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'We are in need'",
-    "latency_ms": null
-  },
-  {
-    "n": 20,
-    "t": 1791709093.0311327,
-    "time_str": "14:28:13",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'of, uh,'",
-    "latency_ms": null
-  },
-  {
-    "n": 21,
-    "t": 1791709097.6564505,
-    "time_str": "14:28:17",
-    "run": "6be2a5",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'We are in need of, uh,'",
-    "latency_ms": null
-  },
-  {
-    "n": 22,
-    "t": 1791709097.6584609,
-    "time_str": "14:28:17",
-    "run": "6be2a5",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 23,
-    "t": 1791709100.809693,
-    "time_str": "14:28:20",
-    "run": "6be2a5",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 0 memory items: []",
-    "latency_ms": 3149.5
-  },
-  {
-    "n": 24,
-    "t": 1791709135.745265,
-    "time_str": "14:28:55",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): '3 DevOps engineers in our team.'",
-    "latency_ms": null
-  },
-  {
-    "n": 25,
-    "t": 1791709140.2187874,
-    "time_str": "14:29:00",
-    "run": "81b4c4",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: '3 DevOps engineers in our team.'",
-    "latency_ms": null
-  },
-  {
-    "n": 26,
-    "t": 1791709140.21977,
-    "time_str": "14:29:00",
-    "run": "81b4c4",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 27,
-    "t": 1791709143.870788,
-    "time_str": "14:29:03",
-    "run": "81b4c4",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['claim']",
-    "latency_ms": 3650.0
-  },
-  {
-    "n": 28,
-    "t": 1791709147.5504215,
-    "time_str": "14:29:07",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Conversation completed (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'We are in need of, uh, 3 DevOps engineers in our team.'",
-    "latency_ms": null
-  },
-  {
-    "n": 29,
-    "t": 1791709147.9962788,
-    "time_str": "14:29:07",
-    "run": "f3a15e",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'We are in need of, uh, 3 DevOps engineers in our team.'",
-    "latency_ms": null
-  },
-  {
-    "n": 30,
-    "t": 1791709148.1017632,
-    "time_str": "14:29:08",
-    "run": "f3a15e",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 31,
-    "t": 1791709149.769679,
-    "time_str": "14:29:09",
-    "run": "81b4c4",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 9 related memories for 'There are 3 DevOps engineers in our team.'",
-    "latency_ms": 5897.3
-  },
-  {
-    "n": 32,
-    "t": 1791709149.771195,
-    "time_str": "14:29:09",
-    "run": "81b4c4",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new claim against 9 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 33,
-    "t": 1791709157.138417,
-    "time_str": "14:29:17",
-    "run": "f3a15e",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['claim']",
-    "latency_ms": 9027.7
-  },
-  {
-    "n": 34,
-    "t": 1791709157.7168243,
-    "time_str": "14:29:17",
-    "run": "f3a15e",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 9 related memories for 'We are in need of 3 DevOps engineers in our team.'",
-    "latency_ms": 568.9
-  },
-  {
-    "n": 35,
-    "t": 1791709157.7194083,
-    "time_str": "14:29:17",
-    "run": "f3a15e",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new claim against 9 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 36,
-    "t": 1791709158.2952945,
-    "time_str": "14:29:18",
-    "run": "81b4c4",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "none",
-      "target_id": null,
-      "confidence": 0.95,
-      "explanation": "The statement about the DevOps team size is unrelated to the retrieved meeting, project, application, cybersecurity, and database memories."
-    },
-    "latency_ms": 8522.5
-  },
-  {
-    "n": 37,
-    "t": 1791709158.3066304,
-    "time_str": "14:29:18",
-    "run": "81b4c4",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 38,
-    "t": 1791709165.6918292,
-    "time_str": "14:29:25",
-    "run": "81b4c4",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "store_only",
-      "update_status": null,
-      "reason": "The claim is unrelated, so it should only be stored."
-    },
-    "latency_ms": 7383.3
-  },
-  {
-    "n": 39,
-    "t": 1791709166.0797641,
-    "time_str": "14:29:26",
-    "run": "f3a15e",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "none",
-      "target_id": null,
-      "confidence": 0.27,
-      "explanation": "No related memory on DevOps hiring is active enough to indicate a contradiction, duplicate, or blocker."
-    },
-    "latency_ms": 8335.1
-  },
-  {
-    "n": 40,
-    "t": 1791709166.1123517,
-    "time_str": "14:29:26",
-    "run": "f3a15e",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 41,
-    "t": 1791709166.2677732,
-    "time_str": "14:29:26",
-    "run": "81b4c4",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored claim (devops team) -> ID 6a7a7b03",
-    "latency_ms": null
-  },
-  {
-    "n": 42,
-    "t": 1791709173.01957,
-    "time_str": "14:29:33",
-    "run": "f3a15e",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "store_only",
-      "update_status": null,
-      "reason": "No related memory conflict, blocker, or duplicate is indicated."
-    },
-    "latency_ms": 6901.2
-  },
-  {
-    "n": 43,
-    "t": 1791709173.5540667,
-    "time_str": "14:29:33",
-    "run": "f3a15e",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored claim (devops hiring) -> ID de088fb6",
-    "latency_ms": null
-  },
-  {
-    "n": 44,
-    "t": 1791709186.08182,
-    "time_str": "14:29:46",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'We are'",
-    "latency_ms": null
-  },
-  {
-    "n": 45,
-    "t": 1791709188.9079483,
-    "time_str": "14:29:48",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'in need of,'",
-    "latency_ms": null
-  },
-  {
-    "n": 46,
-    "t": 1791709191.0171611,
-    "time_str": "14:29:51",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'like,'",
-    "latency_ms": null
-  },
-  {
-    "n": 47,
-    "t": 1791709192.8650386,
-    "time_str": "14:29:52",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'a DevOps'",
-    "latency_ms": null
-  },
-  {
-    "n": 48,
-    "t": 1791709198.3104246,
-    "time_str": "14:29:58",
-    "run": "f9d321",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'We are in need of, like, a DevOps'",
-    "latency_ms": null
-  },
-  {
-    "n": 49,
-    "t": 1791709198.3134267,
-    "time_str": "14:29:58",
-    "run": "f9d321",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 50,
-    "t": 1791709201.5673208,
-    "time_str": "14:30:01",
-    "run": "f9d321",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['claim']",
-    "latency_ms": 3250.3
-  },
-  {
-    "n": 51,
-    "t": 1791709203.375985,
-    "time_str": "14:30:03",
-    "run": "f9d321",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 10 related memories for 'We are in need of a DevOps.'",
-    "latency_ms": 1789.3
-  },
-  {
-    "n": 52,
-    "t": 1791709203.3894384,
-    "time_str": "14:30:03",
-    "run": "f9d321",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new claim against 10 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 53,
-    "t": 1791709210.103456,
-    "time_str": "14:30:10",
-    "run": "f9d321",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "duplicate",
-      "target_id": "de088fb6-4348-4049-ab84-4e615c48cb95",
-      "confidence": 0.96,
-      "explanation": "The new claim repeats the existing current memory that we are in need of DevOps engineers."
-    },
-    "latency_ms": 6651.2
-  },
-  {
-    "n": 54,
-    "t": 1791709210.1070967,
-    "time_str": "14:30:10",
-    "run": "f9d321",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 55,
-    "t": 1791709213.535071,
-    "time_str": "14:30:13",
-    "run": "f9d321",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "store_only",
-      "update_status": null,
-      "reason": "Duplicate claim; no alert needed."
-    },
-    "latency_ms": 3427.2
-  },
-  {
-    "n": 56,
-    "t": 1791709213.538239,
-    "time_str": "14:30:13",
-    "run": "f9d321",
-    "step": "Memory",
-    "status": "skipped",
-    "detail": "Duplicate detected: memory not duplicated in Qdrant",
-    "latency_ms": null
-  },
-  {
-    "n": 57,
-    "t": 1791709227.8673265,
-    "time_str": "14:30:27",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'engineer'",
-    "latency_ms": null
-  },
-  {
-    "n": 58,
-    "t": 1791709231.8845308,
-    "time_str": "14:30:31",
-    "run": "c81b18",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'engineer'",
-    "latency_ms": null
-  },
-  {
-    "n": 59,
-    "t": 1791709231.8904023,
-    "time_str": "14:30:31",
-    "run": "c81b18",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 60,
-    "t": 1791709234.8536808,
-    "time_str": "14:30:34",
-    "run": "c81b18",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 0 memory items: []",
-    "latency_ms": 2960.3
-  },
-  {
-    "n": 61,
-    "t": 1791709234.8865638,
-    "time_str": "14:30:34",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Conversation completed (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'We are in need of, like, a DevOps'",
-    "latency_ms": null
-  },
-  {
-    "n": 62,
-    "t": 1791709234.8924649,
-    "time_str": "14:30:34",
-    "run": "9df5f5",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'We are in need of, like, a DevOps'",
-    "latency_ms": null
-  },
-  {
-    "n": 63,
-    "t": 1791709234.894477,
-    "time_str": "14:30:34",
-    "run": "9df5f5",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 64,
-    "t": 1791709237.9950047,
-    "time_str": "14:30:37",
-    "run": "9df5f5",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['claim']",
-    "latency_ms": 3096.7
-  },
-  {
-    "n": 65,
-    "t": 1791709238.4547563,
-    "time_str": "14:30:38",
-    "run": "9df5f5",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 10 related memories for 'We are in need of a DevOps.'",
-    "latency_ms": 459.1
-  },
-  {
-    "n": 66,
-    "t": 1791709238.4931078,
-    "time_str": "14:30:38",
-    "run": "9df5f5",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new claim against 10 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 67,
-    "t": 1791709247.4361002,
-    "time_str": "14:30:47",
-    "run": "9df5f5",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "status_update",
-      "target_id": "de088fb6-4348-4049-ab84-4e615c48cb95",
-      "confidence": 0.74,
-      "explanation": "This restates the existing DevOps hiring concern, which is already captured by the prior memory 'We are in need of 3 DevOps engineers in our team.'"
-    },
-    "latency_ms": 8932.3
-  },
-  {
-    "n": 68,
-    "t": 1791709247.4390717,
-    "time_str": "14:30:47",
-    "run": "9df5f5",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 69,
-    "t": 1791709251.4134126,
-    "time_str": "14:30:51",
-    "run": "9df5f5",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "store_only",
-      "update_status": "DONE",
-      "reason": "This is a repeated hiring concern, so store it and mark the target as done."
-    },
-    "latency_ms": 3969.9
-  },
-  {
-    "n": 70,
-    "t": 1791709251.8747106,
-    "time_str": "14:30:51",
-    "run": "9df5f5",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored claim (devops) -> ID 08fdf28c",
-    "latency_ms": null
-  },
-  {
-    "n": 71,
-    "t": 1791709251.9075696,
-    "time_str": "14:30:51",
-    "run": "9df5f5",
-    "step": "Guard",
-    "status": "rejected",
-    "detail": "Invalid state transition: DONE is not allowed for claim",
-    "latency_ms": null
-  },
-  {
-    "n": 72,
-    "t": 1791709266.623854,
-    "time_str": "14:31:06",
-    "run": "omi",
-    "step": "Omi Voice",
-    "status": "heard",
-    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'Yeah.'",
-    "latency_ms": null
-  },
-  {
-    "n": 73,
-    "t": 1791709271.3565474,
-    "time_str": "14:31:11",
-    "run": "db9780",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'Yeah.'",
-    "latency_ms": null
-  },
-  {
-    "n": 74,
-    "t": 1791709271.3608954,
-    "time_str": "14:31:11",
-    "run": "db9780",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 75,
-    "t": 1791709274.3222625,
-    "time_str": "14:31:14",
-    "run": "db9780",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 0 memory items: []",
-    "latency_ms": 2958.8
-  },
-  {
-    "n": 76,
-    "t": 1791712897.851269,
-    "time_str": "15:31:37",
-    "run": "39c107",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'I will deliver the design mockups by Friday.'",
-    "latency_ms": null
-  },
-  {
-    "n": 77,
-    "t": 1791712897.8523116,
-    "time_str": "15:31:37",
-    "run": "39c107",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 78,
-    "t": 1791712897.853942,
-    "time_str": "15:31:37",
-    "run": "39c107",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['commitment']",
-    "latency_ms": 0.5
-  },
-  {
-    "n": 79,
-    "t": 1791712897.8584573,
-    "time_str": "15:31:37",
-    "run": "39c107",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 3 related memories for 'I will deliver the design mockups by Friday.'",
-    "latency_ms": 2.5
-  },
-  {
-    "n": 80,
-    "t": 1791712897.8595507,
-    "time_str": "15:31:37",
-    "run": "39c107",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new commitment against 3 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 81,
-    "t": 1791712897.8595507,
-    "time_str": "15:31:37",
-    "run": "39c107",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "none",
-      "target_id": null,
-      "confidence": 0.0,
-      "explanation": "Nothing contradictory or related found."
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 82,
-    "t": 1791712897.8605635,
-    "time_str": "15:31:37",
-    "run": "39c107",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 83,
-    "t": 1791712897.8615637,
-    "time_str": "15:31:37",
-    "run": "39c107",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "store_only",
-      "update_status": null,
-      "reason": "relation=none"
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 84,
-    "t": 1791712897.8676288,
-    "time_str": "15:31:37",
-    "run": "39c107",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored commitment (general) -> ID 8577280a",
-    "latency_ms": null
-  },
-  {
-    "n": 85,
-    "t": 1791712897.8736072,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'Let's use PostgreSQL for our database.'",
-    "latency_ms": null
-  },
-  {
-    "n": 86,
-    "t": 1791712897.8746076,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 87,
-    "t": 1791712897.8756082,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['decision']",
-    "latency_ms": 0.1
-  },
-  {
-    "n": 88,
-    "t": 1791712897.8791432,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 4 related memories for 'Let's use PostgreSQL for our database.'",
-    "latency_ms": 1.9
-  },
-  {
-    "n": 89,
-    "t": 1791712897.8801358,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new decision against 4 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 90,
-    "t": 1791712897.8811677,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "decision_changed",
-      "target_id": "99ac3e66-538d-4f73-ad31-7e43e1ccfab1",
-      "confidence": 0.9,
-      "explanation": "Earlier decision: \"We're going with MongoDB.\""
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 91,
-    "t": 1791712897.882163,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 92,
-    "t": 1791712897.882163,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "alert",
-      "update_status": "SUPERSEDED",
-      "reason": "relation=decision_changed"
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 93,
-    "t": 1791712897.8851318,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored decision (database) -> ID 3beb4483",
-    "latency_ms": null
-  },
-  {
-    "n": 94,
-    "t": 1791712897.8916545,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Qdrant",
-    "status": "updated",
-    "detail": "Target decision 'We're going with MongoDB.' status -> SUPERSEDED",
-    "latency_ms": null
-  },
-  {
-    "n": 95,
-    "t": 1791712897.8926551,
-    "time_str": "15:31:37",
-    "run": "f6518d",
-    "step": "Receipt",
-    "status": "issued",
-    "detail": "Receipt generated: \ud83d\udd04 Decision Changed - Decision changed. Before: \"We're going with MongoDB.\". Now: \"Let's use PostgreSQL for our database.\".",
-    "latency_ms": null
-  },
-  {
-    "n": 96,
-    "t": 1791712897.9334383,
-    "time_str": "15:31:37",
-    "run": "fee7fc",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'Let's use PostgreSQL for our database.'",
-    "latency_ms": null
-  },
-  {
-    "n": 97,
-    "t": 1791712897.9344754,
-    "time_str": "15:31:37",
-    "run": "fee7fc",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 98,
-    "t": 1791712897.93547,
-    "time_str": "15:31:37",
-    "run": "fee7fc",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['decision']",
-    "latency_ms": 0.1
-  },
-  {
-    "n": 99,
-    "t": 1791712897.938615,
-    "time_str": "15:31:37",
-    "run": "fee7fc",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 0 related memories for 'Let's use PostgreSQL for our database.'",
-    "latency_ms": 2.9
-  },
-  {
-    "n": 100,
-    "t": 1791712897.9396155,
-    "time_str": "15:31:37",
-    "run": "fee7fc",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new decision against 0 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 101,
-    "t": 1791712897.9406145,
-    "time_str": "15:31:37",
-    "run": "fee7fc",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "none",
-      "target_id": null,
-      "confidence": 0.0,
-      "explanation": "Nothing contradictory or related found."
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 102,
-    "t": 1791712897.9416142,
-    "time_str": "15:31:37",
-    "run": "fee7fc",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 103,
-    "t": 1791712897.9426303,
-    "time_str": "15:31:37",
-    "run": "fee7fc",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "store_only",
-      "update_status": null,
-      "reason": "relation=none"
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 104,
-    "t": 1791712897.9466136,
-    "time_str": "15:31:37",
-    "run": "fee7fc",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored decision (database) -> ID a0dec9fe",
-    "latency_ms": null
-  },
-  {
-    "n": 105,
-    "t": 1791712897.9506454,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'We're going with MongoDB.'",
-    "latency_ms": null
-  },
-  {
-    "n": 106,
-    "t": 1791712897.951646,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 107,
-    "t": 1791712897.9526474,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['decision']",
-    "latency_ms": 0.1
-  },
-  {
-    "n": 108,
-    "t": 1791712897.9571507,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 1 related memories for 'We're going with MongoDB.'",
-    "latency_ms": 1.8
-  },
-  {
-    "n": 109,
-    "t": 1791712897.9581552,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new decision against 1 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 110,
-    "t": 1791712897.9591606,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "decision_changed",
-      "target_id": "a0dec9fe-f5c0-438d-9442-3816a9a69130",
-      "confidence": 0.9,
-      "explanation": "Earlier decision: \"Let's use PostgreSQL for our database.\""
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 111,
-    "t": 1791712897.9601617,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 112,
-    "t": 1791712897.961161,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "alert",
-      "update_status": "SUPERSEDED",
-      "reason": "relation=decision_changed"
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 113,
-    "t": 1791712897.9651585,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored decision (database) -> ID e928f4ea",
-    "latency_ms": null
-  },
-  {
-    "n": 114,
-    "t": 1791712897.968668,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Qdrant",
-    "status": "updated",
-    "detail": "Target decision 'Let's use PostgreSQL for our database.' status -> SUPERSEDED",
-    "latency_ms": null
-  },
-  {
-    "n": 115,
-    "t": 1791712897.9697032,
-    "time_str": "15:31:37",
-    "run": "ab8ed5",
-    "step": "Receipt",
-    "status": "issued",
-    "detail": "Receipt generated: \ud83d\udd04 Decision Changed - Decision changed. Before: \"Let's use PostgreSQL for our database.\". Now: \"We're going with MongoDB.\".",
-    "latency_ms": null
-  },
-  {
-    "n": 116,
-    "t": 1791712897.984976,
-    "time_str": "15:31:37",
-    "run": "50df79",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'I will prepare the presentation slides tomorrow.'",
-    "latency_ms": null
-  },
-  {
-    "n": 117,
-    "t": 1791712897.9860456,
-    "time_str": "15:31:37",
-    "run": "50df79",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 118,
-    "t": 1791712897.9876595,
-    "time_str": "15:31:37",
-    "run": "50df79",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['commitment']",
-    "latency_ms": 0.1
-  },
-  {
-    "n": 119,
-    "t": 1791712897.9912472,
-    "time_str": "15:31:37",
-    "run": "50df79",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 2 related memories for 'I will prepare the presentation slides tomorrow.'",
-    "latency_ms": 2.0
-  },
-  {
-    "n": 120,
-    "t": 1791712897.9930253,
-    "time_str": "15:31:37",
-    "run": "50df79",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new commitment against 2 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 121,
-    "t": 1791712897.994119,
-    "time_str": "15:31:37",
-    "run": "50df79",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "none",
-      "target_id": null,
-      "confidence": 0.0,
-      "explanation": "Nothing contradictory or related found."
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 122,
-    "t": 1791712897.9951236,
-    "time_str": "15:31:37",
-    "run": "50df79",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 123,
-    "t": 1791712897.9951236,
-    "time_str": "15:31:37",
-    "run": "50df79",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "store_only",
-      "update_status": null,
-      "reason": "relation=none"
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 124,
-    "t": 1791712898.001637,
-    "time_str": "15:31:38",
-    "run": "50df79",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored commitment (general) -> ID 9e46493d",
-    "latency_ms": null
-  },
-  {
-    "n": 125,
-    "t": 1791712898.010924,
-    "time_str": "15:31:38",
-    "run": "manual",
-    "step": "Privacy",
-    "status": "ok",
-    "detail": "Forgotten 1 memories matching topic 'presentation slides'",
-    "latency_ms": null
-  },
-  {
-    "n": 126,
-    "t": 1791712898.016979,
-    "time_str": "15:31:38",
-    "run": "add61e",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'I'll finish the authentication API by Friday.'",
-    "latency_ms": null
-  },
-  {
-    "n": 127,
-    "t": 1791712898.0183103,
-    "time_str": "15:31:38",
-    "run": "add61e",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 128,
-    "t": 1791712898.0194385,
-    "time_str": "15:31:38",
-    "run": "add61e",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['commitment']",
-    "latency_ms": 0.1
-  },
-  {
-    "n": 129,
-    "t": 1791712898.023755,
-    "time_str": "15:31:38",
-    "run": "add61e",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 2 related memories for 'I'll finish the authentication API by Friday.'",
-    "latency_ms": 2.1
-  },
-  {
-    "n": 130,
-    "t": 1791712898.02553,
-    "time_str": "15:31:38",
-    "run": "add61e",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new commitment against 2 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 131,
-    "t": 1791712898.0265367,
-    "time_str": "15:31:38",
-    "run": "add61e",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "none",
-      "target_id": null,
-      "confidence": 0.0,
-      "explanation": "Nothing contradictory or related found."
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 132,
-    "t": 1791712898.0270429,
-    "time_str": "15:31:38",
-    "run": "add61e",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 133,
-    "t": 1791712898.0290556,
-    "time_str": "15:31:38",
-    "run": "add61e",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "store_only",
-      "update_status": null,
-      "reason": "relation=none"
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 134,
-    "t": 1791712898.0320544,
-    "time_str": "15:31:38",
-    "run": "add61e",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored commitment (authentication) -> ID 3eedb062",
-    "latency_ms": null
-  },
-  {
-    "n": 135,
-    "t": 1791712898.0447037,
-    "time_str": "15:31:38",
-    "run": "c53858",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'I'll finish the authentication API by Friday.'",
-    "latency_ms": null
-  },
-  {
-    "n": 136,
-    "t": 1791712898.0457692,
-    "time_str": "15:31:38",
-    "run": "c53858",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 137,
-    "t": 1791712898.0468342,
-    "time_str": "15:31:38",
-    "run": "c53858",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['commitment']",
-    "latency_ms": 0.1
-  },
-  {
-    "n": 138,
-    "t": 1791712898.0497005,
-    "time_str": "15:31:38",
-    "run": "c53858",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 0 related memories for 'I'll finish the authentication API by Friday.'",
-    "latency_ms": 1.6
-  },
-  {
-    "n": 139,
-    "t": 1791712898.0514853,
-    "time_str": "15:31:38",
-    "run": "c53858",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new commitment against 0 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 140,
-    "t": 1791712898.0531638,
-    "time_str": "15:31:38",
-    "run": "c53858",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "none",
-      "target_id": null,
-      "confidence": 0.0,
-      "explanation": "Nothing contradictory or related found."
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 141,
-    "t": 1791712898.0557723,
-    "time_str": "15:31:38",
-    "run": "c53858",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 142,
-    "t": 1791712898.0572865,
-    "time_str": "15:31:38",
-    "run": "c53858",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "store_only",
-      "update_status": null,
-      "reason": "relation=none"
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 143,
-    "t": 1791712898.0622878,
-    "time_str": "15:31:38",
-    "run": "c53858",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored commitment (authentication) -> ID 22649e7b",
-    "latency_ms": null
-  },
-  {
-    "n": 144,
-    "t": 1791712898.0677965,
-    "time_str": "15:31:38",
-    "run": "e091d7",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'Let's use PostgreSQL for the database.'",
-    "latency_ms": null
-  },
-  {
-    "n": 145,
-    "t": 1791712898.0688183,
-    "time_str": "15:31:38",
-    "run": "e091d7",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 146,
-    "t": 1791712898.0708013,
-    "time_str": "15:31:38",
-    "run": "e091d7",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['decision']",
-    "latency_ms": 0.1
-  },
-  {
-    "n": 147,
-    "t": 1791712898.074799,
-    "time_str": "15:31:38",
-    "run": "e091d7",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 1 related memories for 'Let's use PostgreSQL for the database.'",
-    "latency_ms": 1.8
-  },
-  {
-    "n": 148,
-    "t": 1791712898.0757987,
-    "time_str": "15:31:38",
-    "run": "e091d7",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new decision against 1 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 149,
-    "t": 1791712898.0773027,
-    "time_str": "15:31:38",
-    "run": "e091d7",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "none",
-      "target_id": null,
-      "confidence": 0.0,
-      "explanation": "Nothing contradictory or related found."
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 150,
-    "t": 1791712898.078308,
-    "time_str": "15:31:38",
-    "run": "e091d7",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 151,
-    "t": 1791712898.079313,
-    "time_str": "15:31:38",
-    "run": "e091d7",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "store_only",
-      "update_status": null,
-      "reason": "relation=none"
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 152,
-    "t": 1791712898.083312,
-    "time_str": "15:31:38",
-    "run": "e091d7",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored decision (database) -> ID 95256d81",
-    "latency_ms": null
-  },
-  {
-    "n": 153,
-    "t": 1791712898.089822,
-    "time_str": "15:31:38",
-    "run": "466762",
-    "step": "Omi",
-    "status": "ok",
-    "detail": "Spoken input received: 'The authentication API is blocking our demo.'",
-    "latency_ms": null
-  },
-  {
-    "n": 154,
-    "t": 1791712898.0908504,
-    "time_str": "15:31:38",
-    "run": "466762",
-    "step": "Extractor",
-    "status": "processing",
-    "detail": "Extracting structured memory candidates...",
-    "latency_ms": null
-  },
-  {
-    "n": 155,
-    "t": 1791712898.091822,
-    "time_str": "15:31:38",
-    "run": "466762",
-    "step": "Extractor",
-    "status": "ok",
-    "detail": "Extracted 1 memory items: ['claim']",
-    "latency_ms": 0.1
-  },
-  {
-    "n": 156,
-    "t": 1791712898.0948234,
-    "time_str": "15:31:38",
-    "run": "466762",
-    "step": "Qdrant",
-    "status": "ok",
-    "detail": "Retrieved 2 related memories for 'The authentication API is blocking our demo.'",
-    "latency_ms": 1.6
-  },
-  {
-    "n": 157,
-    "t": 1791712898.0958216,
-    "time_str": "15:31:38",
-    "run": "466762",
-    "step": "Auditor",
-    "status": "reasoning",
-    "detail": "Auditing new claim against 2 related memories...",
-    "latency_ms": null
-  },
-  {
-    "n": 158,
-    "t": 1791712898.0973253,
-    "time_str": "15:31:38",
-    "run": "466762",
-    "step": "Auditor",
-    "status": "ok",
-    "detail": {
-      "relation": "blocker_detected",
-      "target_id": "22649e7b-46fa-42cf-9946-599101a38cf5",
-      "confidence": 0.9,
-      "explanation": "Commitment is now blocked: \"I'll finish the authentication API by Friday.\""
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 159,
-    "t": 1791712898.0993295,
-    "time_str": "15:31:38",
-    "run": "466762",
-    "step": "Manager",
-    "status": "deciding",
-    "detail": "Evaluating policy, state updates, and alert necessity...",
-    "latency_ms": null
-  },
-  {
-    "n": 160,
-    "t": 1791712898.100366,
-    "time_str": "15:31:38",
-    "run": "466762",
-    "step": "Manager",
-    "status": "ok",
-    "detail": {
-      "action": "alert",
-      "update_status": "BLOCKED",
-      "reason": "relation=blocker_detected"
-    },
-    "latency_ms": 0.0
-  },
-  {
-    "n": 161,
-    "t": 1791712898.105331,
-    "time_str": "15:31:38",
-    "run": "466762",
-    "step": "Qdrant",
-    "status": "stored",
-    "detail": "Stored claim (authentication) -> ID 3cabd047",
-    "latency_ms": null
-  },
-  {
-    "n": 162,
-    "t": 1791712898.109208,
-    "time_str": "15:31:38",
-    "run": "466762",
-    "step": "Qdrant",
-    "status": "updated",
-    "detail": "Target commitment 'I'll finish the authentication API by Friday.' status -> BLOCKED",
-    "latency_ms": null
-  },
-  {
     "n": 163,
     "t": 1791712898.1112251,
     "time_str": "15:31:38",
@@ -2671,6 +898,2367 @@
     "t": 1791712898.5089343,
     "time_str": "15:31:38",
     "run": "dde1e3",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 0 memory items: []",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 246,
+    "t": 1791796670.3841767,
+    "time_str": "14:47:50",
+    "run": "omi",
+    "step": "Omi Voice",
+    "status": "heard",
+    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'Uh hi, let's have the team meeting on Monday.'",
+    "latency_ms": null
+  },
+  {
+    "n": 247,
+    "t": 1791796675.8728955,
+    "time_str": "14:47:55",
+    "run": "4dfb07",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Uh hi, let's have the team meeting on Monday.'",
+    "latency_ms": null
+  },
+  {
+    "n": 248,
+    "t": 1791796677.3526733,
+    "time_str": "14:47:57",
+    "run": "4dfb07",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 249,
+    "t": 1791796682.8533459,
+    "time_str": "14:48:02",
+    "run": "omi",
+    "step": "Omi Voice",
+    "status": "heard",
+    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'So the team meeting was actually scheduled on Thursday.'",
+    "latency_ms": null
+  },
+  {
+    "n": 250,
+    "t": 1791796684.0548644,
+    "time_str": "14:48:04",
+    "run": "4dfb07",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['decision']",
+    "latency_ms": 6378.2
+  },
+  {
+    "n": 251,
+    "t": 1791796696.6207147,
+    "time_str": "14:48:16",
+    "run": "4dfb07",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 10 related memories for 'Let's have the team meeting on Monday.'",
+    "latency_ms": 11604.5
+  },
+  {
+    "n": 252,
+    "t": 1791796696.7113712,
+    "time_str": "14:48:16",
+    "run": "4dfb07",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new decision against 10 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 253,
+    "t": 1791796702.878695,
+    "time_str": "14:48:22",
+    "run": "omi",
+    "step": "Omi Voice",
+    "status": "heard",
+    "detail": "Conversation completed (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'Uh hi, let's have the team meeting on Monday. So the team meeting was actually scheduled on Thursday.'",
+    "latency_ms": null
+  },
+  {
+    "n": 254,
+    "t": 1791796702.9678674,
+    "time_str": "14:48:22",
+    "run": "778e70",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Uh hi, let's have the team meeting on Monday. So the team meeting was actually scheduled on Thursday.'",
+    "latency_ms": null
+  },
+  {
+    "n": 255,
+    "t": 1791796702.9820237,
+    "time_str": "14:48:22",
+    "run": "778e70",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 256,
+    "t": 1791796706.3447998,
+    "time_str": "14:48:26",
+    "run": "4dfb07",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "none",
+      "target_id": null,
+      "confidence": 0.62,
+      "explanation": "The new statement is about scheduling a team meeting and does not directly update or contradict any active related memory."
+    },
+    "latency_ms": 9478.0
+  },
+  {
+    "n": 257,
+    "t": 1791796706.3494594,
+    "time_str": "14:48:26",
+    "run": "4dfb07",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 258,
+    "t": 1791796707.3905518,
+    "time_str": "14:48:27",
+    "run": "778e70",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['decision']",
+    "latency_ms": 4212.4
+  },
+  {
+    "n": 259,
+    "t": 1791796708.006258,
+    "time_str": "14:48:28",
+    "run": "778e70",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 10 related memories for 'The team meeting was scheduled on Thursday.'",
+    "latency_ms": 608.9
+  },
+  {
+    "n": 260,
+    "t": 1791796708.0752149,
+    "time_str": "14:48:28",
+    "run": "778e70",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new decision against 10 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 261,
+    "t": 1791796714.005271,
+    "time_str": "14:48:34",
+    "run": "4dfb07",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": null,
+      "reason": "No contradiction or blocker is indicated, so this should just be stored."
+    },
+    "latency_ms": 7594.5
+  },
+  {
+    "n": 262,
+    "t": 1791796716.7413366,
+    "time_str": "14:48:36",
+    "run": "4dfb07",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored decision (team meeting) -> ID a2be8796",
+    "latency_ms": null
+  },
+  {
+    "n": 263,
+    "t": 1791796719.08369,
+    "time_str": "14:48:39",
+    "run": "4ce2eb",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'So the team meeting was actually scheduled on Thursday.'",
+    "latency_ms": null
+  },
+  {
+    "n": 264,
+    "t": 1791796719.4899795,
+    "time_str": "14:48:39",
+    "run": "4ce2eb",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 265,
+    "t": 1791796726.4405553,
+    "time_str": "14:48:46",
+    "run": "778e70",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "duplicate",
+      "target_id": "d56c6932-b5c5-46e0-9933-47c50ec3d52f",
+      "confidence": 0.81,
+      "explanation": "The new statement matches the prior CURRENT meeting memory that the meeting will be organized by the technical team."
+    },
+    "latency_ms": 18273.0
+  },
+  {
+    "n": 266,
+    "t": 1791796726.5460298,
+    "time_str": "14:48:46",
+    "run": "778e70",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 267,
+    "t": 1791796726.7262948,
+    "time_str": "14:48:46",
+    "run": "4ce2eb",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['decision']",
+    "latency_ms": 6301.4
+  },
+  {
+    "n": 268,
+    "t": 1791796729.3103414,
+    "time_str": "14:48:49",
+    "run": "4ce2eb",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 10 related memories for 'the team meeting was actually scheduled on Thursday'",
+    "latency_ms": 2311.6
+  },
+  {
+    "n": 269,
+    "t": 1791796729.3530934,
+    "time_str": "14:48:49",
+    "run": "4ce2eb",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new decision against 10 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 270,
+    "t": 1791796744.7570374,
+    "time_str": "14:49:04",
+    "run": "778e70",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": null,
+      "reason": "Duplicate relation means no alert and no status change."
+    },
+    "latency_ms": 17773.2
+  },
+  {
+    "n": 271,
+    "t": 1791796744.8227785,
+    "time_str": "14:49:04",
+    "run": "778e70",
+    "step": "Memory",
+    "status": "skipped",
+    "detail": "Duplicate detected: memory not duplicated in Qdrant",
+    "latency_ms": null
+  },
+  {
+    "n": 272,
+    "t": 1791796745.363683,
+    "time_str": "14:49:05",
+    "run": "4ce2eb",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "decision_changed",
+      "target_id": "a2be8796-14c2-4f70-b2cd-24caf691c1f5",
+      "confidence": 0.94,
+      "explanation": "The new statement replaces the earlier active decision to hold the team meeting on Monday with Thursday instead."
+    },
+    "latency_ms": 15889.4
+  },
+  {
+    "n": 273,
+    "t": 1791796745.377856,
+    "time_str": "14:49:05",
+    "run": "4ce2eb",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 274,
+    "t": 1791796753.3191338,
+    "time_str": "14:49:13",
+    "run": "4ce2eb",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "alert",
+      "update_status": "SUPERSEDED",
+      "reason": "This is a decision change and no recent alert covers this specific meeting."
+    },
+    "latency_ms": 7916.1
+  },
+  {
+    "n": 275,
+    "t": 1791796754.0136428,
+    "time_str": "14:49:14",
+    "run": "4ce2eb",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored decision (team meeting) -> ID 0bb617c9",
+    "latency_ms": null
+  },
+  {
+    "n": 276,
+    "t": 1791796754.4376254,
+    "time_str": "14:49:14",
+    "run": "4ce2eb",
+    "step": "Qdrant",
+    "status": "updated",
+    "detail": "Target decision 'Let's have the team meeting on Monday.' status -> SUPERSEDED",
+    "latency_ms": null
+  },
+  {
+    "n": 277,
+    "t": 1791796754.8968282,
+    "time_str": "14:49:14",
+    "run": "4ce2eb",
+    "step": "Receipt",
+    "status": "issued",
+    "detail": "Receipt generated: \ud83d\udd04 Decision Changed - Decision changed: team meeting was Monday, now it\u2019s Thursday.",
+    "latency_ms": null
+  },
+  {
+    "n": 278,
+    "t": 1791796930.6457298,
+    "time_str": "14:52:10",
+    "run": "omi",
+    "step": "Omi Voice",
+    "status": "heard",
+    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'Recepts forget about uh the meeting schedule.'",
+    "latency_ms": null
+  },
+  {
+    "n": 279,
+    "t": 1791796935.184564,
+    "time_str": "14:52:15",
+    "run": "529dfc",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Recepts forget about uh the meeting schedule.'",
+    "latency_ms": null
+  },
+  {
+    "n": 280,
+    "t": 1791796935.206846,
+    "time_str": "14:52:15",
+    "run": "529dfc",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 281,
+    "t": 1791796939.7752657,
+    "time_str": "14:52:19",
+    "run": "529dfc",
+    "step": "Extractor",
+    "status": "command",
+    "detail": {
+      "type": "forget_topic",
+      "topic": "meeting schedule"
+    },
+    "latency_ms": 4436.6
+  },
+  {
+    "n": 282,
+    "t": 1791796940.2231562,
+    "time_str": "14:52:20",
+    "run": "omi",
+    "step": "Omi Voice",
+    "status": "heard",
+    "detail": "Live voice transcript (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'uh that the decision has been changed. Please forget about that.'",
+    "latency_ms": null
+  },
+  {
+    "n": 283,
+    "t": 1791796940.9583368,
+    "time_str": "14:52:20",
+    "run": "529dfc",
+    "step": "Privacy",
+    "status": "ok",
+    "detail": "Forgotten 14 memories matching topic 'meeting schedule'",
+    "latency_ms": null
+  },
+  {
+    "n": 284,
+    "t": 1791796945.502769,
+    "time_str": "14:52:25",
+    "run": "e5a3ad",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'uh that the decision has been changed. Please forget about that.'",
+    "latency_ms": null
+  },
+  {
+    "n": 285,
+    "t": 1791796945.546754,
+    "time_str": "14:52:25",
+    "run": "e5a3ad",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 286,
+    "t": 1791796947.3146958,
+    "time_str": "14:52:27",
+    "run": "omi",
+    "step": "Omi Voice",
+    "status": "heard",
+    "detail": "Conversation completed (vQfvd1h9u2UH5eitNG5JwrPbIZW2): 'Recepts forget about uh the meeting schedule.'",
+    "latency_ms": null
+  },
+  {
+    "n": 287,
+    "t": 1791796947.3226075,
+    "time_str": "14:52:27",
+    "run": "252793",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Recepts forget about uh the meeting schedule.'",
+    "latency_ms": null
+  },
+  {
+    "n": 288,
+    "t": 1791796947.33155,
+    "time_str": "14:52:27",
+    "run": "252793",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 289,
+    "t": 1791796949.7309675,
+    "time_str": "14:52:29",
+    "run": "e5a3ad",
+    "step": "Extractor",
+    "status": "command",
+    "detail": {
+      "type": "forget_topic",
+      "topic": "that decision"
+    },
+    "latency_ms": 4144.4
+  },
+  {
+    "n": 290,
+    "t": 1791796950.1096954,
+    "time_str": "14:52:30",
+    "run": "e5a3ad",
+    "step": "Privacy",
+    "status": "ok",
+    "detail": "Forgotten 0 memories matching topic 'that decision'",
+    "latency_ms": null
+  },
+  {
+    "n": 291,
+    "t": 1791796950.865793,
+    "time_str": "14:52:30",
+    "run": "252793",
+    "step": "Extractor",
+    "status": "command",
+    "detail": {
+      "type": "forget_topic",
+      "topic": "meeting schedule"
+    },
+    "latency_ms": 3520.8
+  },
+  {
+    "n": 292,
+    "t": 1791796953.3020437,
+    "time_str": "14:52:33",
+    "run": "252793",
+    "step": "Privacy",
+    "status": "ok",
+    "detail": "Forgotten 0 memories matching topic 'meeting schedule'",
+    "latency_ms": null
+  },
+  {
+    "n": 293,
+    "t": 1791811792.0139313,
+    "time_str": "18:59:52",
+    "run": "0854aa",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'I will deliver the design mockups by Friday.'",
+    "latency_ms": null
+  },
+  {
+    "n": 294,
+    "t": 1791811792.0163107,
+    "time_str": "18:59:52",
+    "run": "0854aa",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 295,
+    "t": 1791811792.0191896,
+    "time_str": "18:59:52",
+    "run": "0854aa",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['commitment']",
+    "latency_ms": 0.2
+  },
+  {
+    "n": 296,
+    "t": 1791811792.0289028,
+    "time_str": "18:59:52",
+    "run": "0854aa",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 3 related memories for 'I will deliver the design mockups by Friday.'",
+    "latency_ms": 7.7
+  },
+  {
+    "n": 297,
+    "t": 1791811792.0329714,
+    "time_str": "18:59:52",
+    "run": "0854aa",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new commitment against 3 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 298,
+    "t": 1791811792.0359802,
+    "time_str": "18:59:52",
+    "run": "0854aa",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "none",
+      "target_id": null,
+      "confidence": 0.0,
+      "explanation": "Nothing contradictory or related found."
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 299,
+    "t": 1791811792.0386193,
+    "time_str": "18:59:52",
+    "run": "0854aa",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 300,
+    "t": 1791811792.0414789,
+    "time_str": "18:59:52",
+    "run": "0854aa",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": null,
+      "reason": "relation=none"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 301,
+    "t": 1791811792.0509405,
+    "time_str": "18:59:52",
+    "run": "0854aa",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored commitment (general) -> ID b1a1c0d5",
+    "latency_ms": null
+  },
+  {
+    "n": 302,
+    "t": 1791811792.0576842,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Let's use PostgreSQL for our database.'",
+    "latency_ms": null
+  },
+  {
+    "n": 303,
+    "t": 1791811792.0603912,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 304,
+    "t": 1791811792.0627666,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['decision']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 305,
+    "t": 1791811792.067286,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 4 related memories for 'Let's use PostgreSQL for our database.'",
+    "latency_ms": 2.6
+  },
+  {
+    "n": 306,
+    "t": 1791811792.0695732,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new decision against 4 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 307,
+    "t": 1791811792.0712852,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "decision_changed",
+      "target_id": "e928f4ea-abbe-44be-82d4-a24b8ae7b571",
+      "confidence": 0.9,
+      "explanation": "Earlier decision: \"We're going with MongoDB.\""
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 308,
+    "t": 1791811792.0741448,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 309,
+    "t": 1791811792.0759928,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "alert",
+      "update_status": "SUPERSEDED",
+      "reason": "relation=decision_changed"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 310,
+    "t": 1791811792.0825024,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored decision (database) -> ID 5fa54a94",
+    "latency_ms": null
+  },
+  {
+    "n": 311,
+    "t": 1791811792.088205,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Qdrant",
+    "status": "updated",
+    "detail": "Target decision 'We're going with MongoDB.' status -> SUPERSEDED",
+    "latency_ms": null
+  },
+  {
+    "n": 312,
+    "t": 1791811792.0911143,
+    "time_str": "18:59:52",
+    "run": "949832",
+    "step": "Receipt",
+    "status": "issued",
+    "detail": "Receipt generated: \ud83d\udd04 Decision Changed - Decision changed. Before: \"We're going with MongoDB.\". Now: \"Let's use PostgreSQL for our database.\".",
+    "latency_ms": null
+  },
+  {
+    "n": 313,
+    "t": 1791811792.1305947,
+    "time_str": "18:59:52",
+    "run": "74348e",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Let's use PostgreSQL for our database.'",
+    "latency_ms": null
+  },
+  {
+    "n": 314,
+    "t": 1791811792.1336033,
+    "time_str": "18:59:52",
+    "run": "74348e",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 315,
+    "t": 1791811792.1360018,
+    "time_str": "18:59:52",
+    "run": "74348e",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['decision']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 316,
+    "t": 1791811792.14138,
+    "time_str": "18:59:52",
+    "run": "74348e",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 0 related memories for 'Let's use PostgreSQL for our database.'",
+    "latency_ms": 2.1
+  },
+  {
+    "n": 317,
+    "t": 1791811792.143733,
+    "time_str": "18:59:52",
+    "run": "74348e",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new decision against 0 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 318,
+    "t": 1791811792.1460192,
+    "time_str": "18:59:52",
+    "run": "74348e",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "none",
+      "target_id": null,
+      "confidence": 0.0,
+      "explanation": "Nothing contradictory or related found."
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 319,
+    "t": 1791811792.147615,
+    "time_str": "18:59:52",
+    "run": "74348e",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 320,
+    "t": 1791811792.1498365,
+    "time_str": "18:59:52",
+    "run": "74348e",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": null,
+      "reason": "relation=none"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 321,
+    "t": 1791811792.1547325,
+    "time_str": "18:59:52",
+    "run": "74348e",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored decision (database) -> ID e9e0485c",
+    "latency_ms": null
+  },
+  {
+    "n": 322,
+    "t": 1791811792.1611533,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'We're going with MongoDB.'",
+    "latency_ms": null
+  },
+  {
+    "n": 323,
+    "t": 1791811792.163114,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 324,
+    "t": 1791811792.1655653,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['decision']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 325,
+    "t": 1791811792.1691654,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 1 related memories for 'We're going with MongoDB.'",
+    "latency_ms": 2.0
+  },
+  {
+    "n": 326,
+    "t": 1791811792.172079,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new decision against 1 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 327,
+    "t": 1791811792.1740637,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "decision_changed",
+      "target_id": "e9e0485c-7b98-49e0-8ee7-e1a661d0265b",
+      "confidence": 0.9,
+      "explanation": "Earlier decision: \"Let's use PostgreSQL for our database.\""
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 328,
+    "t": 1791811792.1765084,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 329,
+    "t": 1791811792.1787293,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "alert",
+      "update_status": "SUPERSEDED",
+      "reason": "relation=decision_changed"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 330,
+    "t": 1791811792.1841612,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored decision (database) -> ID f039d31e",
+    "latency_ms": null
+  },
+  {
+    "n": 331,
+    "t": 1791811792.1891842,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Qdrant",
+    "status": "updated",
+    "detail": "Target decision 'Let's use PostgreSQL for our database.' status -> SUPERSEDED",
+    "latency_ms": null
+  },
+  {
+    "n": 332,
+    "t": 1791811792.1914837,
+    "time_str": "18:59:52",
+    "run": "a6f048",
+    "step": "Receipt",
+    "status": "issued",
+    "detail": "Receipt generated: \ud83d\udd04 Decision Changed - Decision changed. Before: \"Let's use PostgreSQL for our database.\". Now: \"We're going with MongoDB.\".",
+    "latency_ms": null
+  },
+  {
+    "n": 333,
+    "t": 1791811792.211045,
+    "time_str": "18:59:52",
+    "run": "a3b749",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'I will prepare the presentation slides tomorrow.'",
+    "latency_ms": null
+  },
+  {
+    "n": 334,
+    "t": 1791811792.2143939,
+    "time_str": "18:59:52",
+    "run": "a3b749",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 335,
+    "t": 1791811792.2371333,
+    "time_str": "18:59:52",
+    "run": "a3b749",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['commitment']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 336,
+    "t": 1791811792.2429698,
+    "time_str": "18:59:52",
+    "run": "a3b749",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 2 related memories for 'I will prepare the presentation slides tomorrow.'",
+    "latency_ms": 2.9
+  },
+  {
+    "n": 337,
+    "t": 1791811792.2461088,
+    "time_str": "18:59:52",
+    "run": "a3b749",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new commitment against 2 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 338,
+    "t": 1791811792.2483907,
+    "time_str": "18:59:52",
+    "run": "a3b749",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "none",
+      "target_id": null,
+      "confidence": 0.0,
+      "explanation": "Nothing contradictory or related found."
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 339,
+    "t": 1791811792.2506409,
+    "time_str": "18:59:52",
+    "run": "a3b749",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 340,
+    "t": 1791811792.2527695,
+    "time_str": "18:59:52",
+    "run": "a3b749",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": null,
+      "reason": "relation=none"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 341,
+    "t": 1791811792.2590337,
+    "time_str": "18:59:52",
+    "run": "a3b749",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored commitment (general) -> ID 24e12139",
+    "latency_ms": null
+  },
+  {
+    "n": 342,
+    "t": 1791811792.2682965,
+    "time_str": "18:59:52",
+    "run": "manual",
+    "step": "Privacy",
+    "status": "ok",
+    "detail": "Forgotten 1 memories matching topic 'presentation slides'",
+    "latency_ms": null
+  },
+  {
+    "n": 343,
+    "t": 1791811792.2752206,
+    "time_str": "18:59:52",
+    "run": "749614",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'I'll finish the authentication API by Friday.'",
+    "latency_ms": null
+  },
+  {
+    "n": 344,
+    "t": 1791811792.2775333,
+    "time_str": "18:59:52",
+    "run": "749614",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 345,
+    "t": 1791811792.2799158,
+    "time_str": "18:59:52",
+    "run": "749614",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['commitment']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 346,
+    "t": 1791811792.2832704,
+    "time_str": "18:59:52",
+    "run": "749614",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 2 related memories for 'I'll finish the authentication API by Friday.'",
+    "latency_ms": 1.8
+  },
+  {
+    "n": 347,
+    "t": 1791811792.2854676,
+    "time_str": "18:59:52",
+    "run": "749614",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new commitment against 2 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 348,
+    "t": 1791811792.287485,
+    "time_str": "18:59:52",
+    "run": "749614",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "none",
+      "target_id": null,
+      "confidence": 0.0,
+      "explanation": "Nothing contradictory or related found."
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 349,
+    "t": 1791811792.2896814,
+    "time_str": "18:59:52",
+    "run": "749614",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 350,
+    "t": 1791811792.2913682,
+    "time_str": "18:59:52",
+    "run": "749614",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": null,
+      "reason": "relation=none"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 351,
+    "t": 1791811792.295997,
+    "time_str": "18:59:52",
+    "run": "749614",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored commitment (authentication) -> ID 7cafaee6",
+    "latency_ms": null
+  },
+  {
+    "n": 352,
+    "t": 1791811792.3071404,
+    "time_str": "18:59:52",
+    "run": "84d585",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'I'll finish the authentication API by Friday.'",
+    "latency_ms": null
+  },
+  {
+    "n": 353,
+    "t": 1791811792.3093662,
+    "time_str": "18:59:52",
+    "run": "84d585",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 354,
+    "t": 1791811792.3115427,
+    "time_str": "18:59:52",
+    "run": "84d585",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['commitment']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 355,
+    "t": 1791811792.3150806,
+    "time_str": "18:59:52",
+    "run": "84d585",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 0 related memories for 'I'll finish the authentication API by Friday.'",
+    "latency_ms": 1.6
+  },
+  {
+    "n": 356,
+    "t": 1791811792.3171904,
+    "time_str": "18:59:52",
+    "run": "84d585",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new commitment against 0 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 357,
+    "t": 1791811792.3190665,
+    "time_str": "18:59:52",
+    "run": "84d585",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "none",
+      "target_id": null,
+      "confidence": 0.0,
+      "explanation": "Nothing contradictory or related found."
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 358,
+    "t": 1791811792.321549,
+    "time_str": "18:59:52",
+    "run": "84d585",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 359,
+    "t": 1791811792.3233268,
+    "time_str": "18:59:52",
+    "run": "84d585",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": null,
+      "reason": "relation=none"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 360,
+    "t": 1791811792.3288732,
+    "time_str": "18:59:52",
+    "run": "84d585",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored commitment (authentication) -> ID 55329345",
+    "latency_ms": null
+  },
+  {
+    "n": 361,
+    "t": 1791811792.335519,
+    "time_str": "18:59:52",
+    "run": "1578ec",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Let's use PostgreSQL for the database.'",
+    "latency_ms": null
+  },
+  {
+    "n": 362,
+    "t": 1791811792.3377507,
+    "time_str": "18:59:52",
+    "run": "1578ec",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 363,
+    "t": 1791811792.3393972,
+    "time_str": "18:59:52",
+    "run": "1578ec",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['decision']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 364,
+    "t": 1791811792.3426547,
+    "time_str": "18:59:52",
+    "run": "1578ec",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 1 related memories for 'Let's use PostgreSQL for the database.'",
+    "latency_ms": 1.6
+  },
+  {
+    "n": 365,
+    "t": 1791811792.345274,
+    "time_str": "18:59:52",
+    "run": "1578ec",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new decision against 1 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 366,
+    "t": 1791811792.34728,
+    "time_str": "18:59:52",
+    "run": "1578ec",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "none",
+      "target_id": null,
+      "confidence": 0.0,
+      "explanation": "Nothing contradictory or related found."
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 367,
+    "t": 1791811792.3490322,
+    "time_str": "18:59:52",
+    "run": "1578ec",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 368,
+    "t": 1791811792.350894,
+    "time_str": "18:59:52",
+    "run": "1578ec",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": null,
+      "reason": "relation=none"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 369,
+    "t": 1791811792.3557599,
+    "time_str": "18:59:52",
+    "run": "1578ec",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored decision (database) -> ID f93099a9",
+    "latency_ms": null
+  },
+  {
+    "n": 370,
+    "t": 1791811792.3626266,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'The authentication API is blocking our demo.'",
+    "latency_ms": null
+  },
+  {
+    "n": 371,
+    "t": 1791811792.3645446,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 372,
+    "t": 1791811792.3665266,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['claim']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 373,
+    "t": 1791811792.3704228,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 2 related memories for 'The authentication API is blocking our demo.'",
+    "latency_ms": 1.7
+  },
+  {
+    "n": 374,
+    "t": 1791811792.372263,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new claim against 2 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 375,
+    "t": 1791811792.3744273,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "blocker_detected",
+      "target_id": "55329345-502b-4cc6-82d8-34398151ab07",
+      "confidence": 0.9,
+      "explanation": "Commitment is now blocked: \"I'll finish the authentication API by Friday.\""
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 376,
+    "t": 1791811792.376298,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 377,
+    "t": 1791811792.3786397,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "alert",
+      "update_status": "BLOCKED",
+      "reason": "relation=blocker_detected"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 378,
+    "t": 1791811792.3845463,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored claim (authentication) -> ID 80cd1a59",
+    "latency_ms": null
+  },
+  {
+    "n": 379,
+    "t": 1791811792.3893642,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Qdrant",
+    "status": "updated",
+    "detail": "Target commitment 'I'll finish the authentication API by Friday.' status -> BLOCKED",
+    "latency_ms": null
+  },
+  {
+    "n": 380,
+    "t": 1791811792.3916152,
+    "time_str": "18:59:52",
+    "run": "640a2c",
+    "step": "Receipt",
+    "status": "issued",
+    "detail": "Receipt generated: \ud83d\udeab Blocker Detected - Work blocked. Commitment \"I'll finish the authentication API by Friday.\" is now marked BLOCKED by: \"The authentication API is blocking our demo.\".",
+    "latency_ms": null
+  },
+  {
+    "n": 381,
+    "t": 1791811792.4096224,
+    "time_str": "18:59:52",
+    "run": "3cf59c",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Authentication is fixed now.'",
+    "latency_ms": null
+  },
+  {
+    "n": 382,
+    "t": 1791811792.4171066,
+    "time_str": "18:59:52",
+    "run": "3cf59c",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 383,
+    "t": 1791811792.443353,
+    "time_str": "18:59:52",
+    "run": "3cf59c",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['claim']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 384,
+    "t": 1791811792.4508977,
+    "time_str": "18:59:52",
+    "run": "3cf59c",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 3 related memories for 'Authentication is fixed now.'",
+    "latency_ms": 3.5
+  },
+  {
+    "n": 385,
+    "t": 1791811792.4548233,
+    "time_str": "18:59:52",
+    "run": "3cf59c",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new claim against 3 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 386,
+    "t": 1791811792.458742,
+    "time_str": "18:59:52",
+    "run": "3cf59c",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "status_update",
+      "target_id": "80cd1a59-d6c6-468c-9db8-f42b14f113ec",
+      "confidence": 0.9,
+      "explanation": "New statement resolves: \"The authentication API is blocking our demo.\""
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 387,
+    "t": 1791811792.4622183,
+    "time_str": "18:59:52",
+    "run": "3cf59c",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 388,
+    "t": 1791811792.4658773,
+    "time_str": "18:59:52",
+    "run": "3cf59c",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": "RESOLVED",
+      "reason": "Status updated to RESOLVED"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 389,
+    "t": 1791811792.4758449,
+    "time_str": "18:59:52",
+    "run": "3cf59c",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored claim (authentication) -> ID 6b655c9a",
+    "latency_ms": null
+  },
+  {
+    "n": 390,
+    "t": 1791811792.4863174,
+    "time_str": "18:59:52",
+    "run": "3cf59c",
+    "step": "Qdrant",
+    "status": "updated",
+    "detail": "Target claim 'The authentication API is blocking our demo.' status -> RESOLVED",
+    "latency_ms": null
+  },
+  {
+    "n": 391,
+    "t": 1791811792.5019612,
+    "time_str": "18:59:52",
+    "run": "dc06bd",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'We're still blocked because authentication isn't ready.'",
+    "latency_ms": null
+  },
+  {
+    "n": 392,
+    "t": 1791811792.5084314,
+    "time_str": "18:59:52",
+    "run": "dc06bd",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 393,
+    "t": 1791811792.5151477,
+    "time_str": "18:59:52",
+    "run": "dc06bd",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['claim']",
+    "latency_ms": 0.2
+  },
+  {
+    "n": 394,
+    "t": 1791811792.5363128,
+    "time_str": "18:59:52",
+    "run": "dc06bd",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 4 related memories for 'We're still blocked because authentication isn't ready.'",
+    "latency_ms": 9.3
+  },
+  {
+    "n": 395,
+    "t": 1791811792.543078,
+    "time_str": "18:59:52",
+    "run": "dc06bd",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new claim against 4 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 396,
+    "t": 1791811792.5510027,
+    "time_str": "18:59:52",
+    "run": "dc06bd",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "possible_contradiction",
+      "target_id": "6b655c9a-f63a-4026-a989-d351b84c669e",
+      "confidence": 0.9,
+      "explanation": "Earlier you said: \"Authentication is fixed now.\""
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 397,
+    "t": 1791811792.557888,
+    "time_str": "18:59:52",
+    "run": "dc06bd",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 398,
+    "t": 1791811792.5824153,
+    "time_str": "18:59:52",
+    "run": "dc06bd",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "alert",
+      "update_status": null,
+      "reason": "relation=possible_contradiction"
+    },
+    "latency_ms": 0.1
+  },
+  {
+    "n": 399,
+    "t": 1791811792.5945373,
+    "time_str": "18:59:52",
+    "run": "dc06bd",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored claim (authentication) -> ID a46bf8a8",
+    "latency_ms": null
+  },
+  {
+    "n": 400,
+    "t": 1791811792.5992835,
+    "time_str": "18:59:52",
+    "run": "dc06bd",
+    "step": "Receipt",
+    "status": "issued",
+    "detail": "Receipt generated: \u26a0 Possible Contradiction - Possible contradiction. Earlier: \"Authentication is fixed now.\". Now: \"We're still blocked because authentication isn't ready.\". Still current?",
+    "latency_ms": null
+  },
+  {
+    "n": 401,
+    "t": 1791811792.60745,
+    "time_str": "18:59:52",
+    "run": "ad31ea",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Receipts, forget about authentication'",
+    "latency_ms": null
+  },
+  {
+    "n": 402,
+    "t": 1791811792.612835,
+    "time_str": "18:59:52",
+    "run": "ad31ea",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 403,
+    "t": 1791811792.6219168,
+    "time_str": "18:59:52",
+    "run": "ad31ea",
+    "step": "Extractor",
+    "status": "command",
+    "detail": {
+      "type": "forget_topic",
+      "topic": "authentication"
+    },
+    "latency_ms": 0.1
+  },
+  {
+    "n": 404,
+    "t": 1791811792.6567936,
+    "time_str": "18:59:52",
+    "run": "ad31ea",
+    "step": "Privacy",
+    "status": "ok",
+    "detail": "Forgotten 4 memories matching topic 'authentication'",
+    "latency_ms": null
+  },
+  {
+    "n": 405,
+    "t": 1791811792.69305,
+    "time_str": "18:59:52",
+    "run": "9383a7",
+    "step": "Scheduler",
+    "status": "detected",
+    "detail": "Overdue commitment detected: 'I'll submit the final project proposal yesterday.' (due 2026-10-10T18:59:52.672052+05:30)",
+    "latency_ms": null
+  },
+  {
+    "n": 406,
+    "t": 1791811792.6981633,
+    "time_str": "18:59:52",
+    "run": "9383a7",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "alert",
+      "update_target_status": null,
+      "alert_message": "Open commitment is overdue: \"I'll submit the final project proposal yesterday.\"",
+      "importance": "high",
+      "reason": "relation=overdue"
+    },
+    "latency_ms": null
+  },
+  {
+    "n": 407,
+    "t": 1791811792.7034757,
+    "time_str": "18:59:52",
+    "run": "9383a7",
+    "step": "Receipt",
+    "status": "issued",
+    "detail": "Overdue receipt: Open commitment is overdue: \"I'll submit the final project proposal yesterday.\"",
+    "latency_ms": null
+  },
+  {
+    "n": 408,
+    "t": 1791811792.9154744,
+    "time_str": "18:59:52",
+    "run": "5e01b1",
+    "step": "Scheduler",
+    "status": "detected",
+    "detail": "Overdue commitment detected: 'I'll send the report tomorrow.' (due 2026-10-11T18:00:00)",
+    "latency_ms": null
+  },
+  {
+    "n": 409,
+    "t": 1791811792.9242194,
+    "time_str": "18:59:52",
+    "run": "5e01b1",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "alert",
+      "update_target_status": null,
+      "alert_message": "Open commitment is overdue: \"I'll send the report tomorrow.\"",
+      "importance": "high",
+      "reason": "relation=overdue"
+    },
+    "latency_ms": null
+  },
+  {
+    "n": 410,
+    "t": 1791811792.9349563,
+    "time_str": "18:59:52",
+    "run": "5e01b1",
+    "step": "Receipt",
+    "status": "issued",
+    "detail": "Overdue receipt: Open commitment is overdue: \"I'll send the report tomorrow.\"",
+    "latency_ms": null
+  },
+  {
+    "n": 411,
+    "t": 1791811792.9486024,
+    "time_str": "18:59:52",
+    "run": "3cc3b4",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Authentication is fixed now. We'll ship Friday.'",
+    "latency_ms": null
+  },
+  {
+    "n": 412,
+    "t": 1791811792.95304,
+    "time_str": "18:59:52",
+    "run": "3cc3b4",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 413,
+    "t": 1791811792.9576008,
+    "time_str": "18:59:52",
+    "run": "3cc3b4",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 2 memory items: ['claim', 'commitment']",
+    "latency_ms": 0.2
+  },
+  {
+    "n": 414,
+    "t": 1791811792.9658163,
+    "time_str": "18:59:52",
+    "run": "3cc3b4",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 4 related memories for 'Authentication is fixed now.'",
+    "latency_ms": 4.0
+  },
+  {
+    "n": 415,
+    "t": 1791811792.9695065,
+    "time_str": "18:59:52",
+    "run": "3cc3b4",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new claim against 4 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 416,
+    "t": 1791811792.9735937,
+    "time_str": "18:59:52",
+    "run": "3cc3b4",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "status_update",
+      "target_id": "8de19276-54cf-4d37-8de3-f9b2d8211edc",
+      "confidence": 0.9,
+      "explanation": "New statement resolves: \"The API is blocked because authentication isn't working.\""
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 417,
+    "t": 1791811792.9799094,
+    "time_str": "18:59:52",
+    "run": "3cc3b4",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 418,
+    "t": 1791811793.002055,
+    "time_str": "18:59:53",
+    "run": "3cc3b4",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": "RESOLVED",
+      "reason": "Status updated to RESOLVED"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 419,
+    "t": 1791811793.0140433,
+    "time_str": "18:59:53",
+    "run": "3cc3b4",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored claim (authentication) -> ID 4319e4c7",
+    "latency_ms": null
+  },
+  {
+    "n": 420,
+    "t": 1791811793.024503,
+    "time_str": "18:59:53",
+    "run": "3cc3b4",
+    "step": "Qdrant",
+    "status": "updated",
+    "detail": "Target claim 'The API is blocked because authentication isn't working.' status -> RESOLVED",
+    "latency_ms": null
+  },
+  {
+    "n": 421,
+    "t": 1791811793.0329623,
+    "time_str": "18:59:53",
+    "run": "3cc3b4",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 5 related memories for 'We'll ship Friday.'",
+    "latency_ms": 4.0
+  },
+  {
+    "n": 422,
+    "t": 1791811793.036875,
+    "time_str": "18:59:53",
+    "run": "3cc3b4",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new commitment against 5 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 423,
+    "t": 1791811793.0412397,
+    "time_str": "18:59:53",
+    "run": "3cc3b4",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "none",
+      "target_id": null,
+      "confidence": 0.0,
+      "explanation": "Nothing contradictory or related found."
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 424,
+    "t": 1791811793.0459936,
+    "time_str": "18:59:53",
+    "run": "3cc3b4",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 425,
+    "t": 1791811793.0497713,
+    "time_str": "18:59:53",
+    "run": "3cc3b4",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "store_only",
+      "update_status": null,
+      "reason": "relation=none"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 426,
+    "t": 1791811793.0625265,
+    "time_str": "18:59:53",
+    "run": "3cc3b4",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored commitment (general) -> ID 3f2bb5f4",
+    "latency_ms": null
+  },
+  {
+    "n": 427,
+    "t": 1791811793.0804927,
+    "time_str": "18:59:53",
+    "run": "27e79c",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'We're still blocked because authentication isn't ready.'",
+    "latency_ms": null
+  },
+  {
+    "n": 428,
+    "t": 1791811793.088517,
+    "time_str": "18:59:53",
+    "run": "27e79c",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 429,
+    "t": 1791811793.0965247,
+    "time_str": "18:59:53",
+    "run": "27e79c",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['claim']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 430,
+    "t": 1791811793.1082866,
+    "time_str": "18:59:53",
+    "run": "27e79c",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 6 related memories for 'We're still blocked because authentication isn't ready.'",
+    "latency_ms": 5.6
+  },
+  {
+    "n": 431,
+    "t": 1791811793.1135817,
+    "time_str": "18:59:53",
+    "run": "27e79c",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new claim against 6 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 432,
+    "t": 1791811793.1183445,
+    "time_str": "18:59:53",
+    "run": "27e79c",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "possible_contradiction",
+      "target_id": "8de19276-54cf-4d37-8de3-f9b2d8211edc",
+      "confidence": 0.9,
+      "explanation": "Earlier you said this was resolved: \"The API is blocked because authentication isn't working.\""
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 433,
+    "t": 1791811793.1226306,
+    "time_str": "18:59:53",
+    "run": "27e79c",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 434,
+    "t": 1791811793.1265564,
+    "time_str": "18:59:53",
+    "run": "27e79c",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "alert",
+      "update_status": null,
+      "reason": "relation=possible_contradiction"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 435,
+    "t": 1791811793.135798,
+    "time_str": "18:59:53",
+    "run": "27e79c",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored claim (authentication) -> ID e40b5559",
+    "latency_ms": null
+  },
+  {
+    "n": 436,
+    "t": 1791811793.1407754,
+    "time_str": "18:59:53",
+    "run": "27e79c",
+    "step": "Receipt",
+    "status": "issued",
+    "detail": "Receipt generated: \u26a0 Possible Contradiction - Possible contradiction. Earlier: \"The API is blocked because authentication isn't working.\". Now: \"We're still blocked because authentication isn't ready.\". Still current?",
+    "latency_ms": null
+  },
+  {
+    "n": 437,
+    "t": 1791811793.1505165,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'We're going with MongoDB.'",
+    "latency_ms": null
+  },
+  {
+    "n": 438,
+    "t": 1791811793.1549668,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 439,
+    "t": 1791811793.17075,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Extractor",
+    "status": "ok",
+    "detail": "Extracted 1 memory items: ['decision']",
+    "latency_ms": 0.1
+  },
+  {
+    "n": 440,
+    "t": 1791811793.1799004,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Qdrant",
+    "status": "ok",
+    "detail": "Retrieved 7 related memories for 'We're going with MongoDB.'",
+    "latency_ms": 4.8
+  },
+  {
+    "n": 441,
+    "t": 1791811793.1843052,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Auditor",
+    "status": "reasoning",
+    "detail": "Auditing new decision against 7 related memories...",
+    "latency_ms": null
+  },
+  {
+    "n": 442,
+    "t": 1791811793.1881104,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Auditor",
+    "status": "ok",
+    "detail": {
+      "relation": "decision_changed",
+      "target_id": "3bc306f8-558c-4fb6-bca8-14eed91a3145",
+      "confidence": 0.9,
+      "explanation": "Earlier decision: \"Let's use PostgreSQL for the database.\""
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 443,
+    "t": 1791811793.1918678,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Manager",
+    "status": "deciding",
+    "detail": "Evaluating policy, state updates, and alert necessity...",
+    "latency_ms": null
+  },
+  {
+    "n": 444,
+    "t": 1791811793.196254,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Manager",
+    "status": "ok",
+    "detail": {
+      "action": "alert",
+      "update_status": "SUPERSEDED",
+      "reason": "relation=decision_changed"
+    },
+    "latency_ms": 0.0
+  },
+  {
+    "n": 445,
+    "t": 1791811793.2060862,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Qdrant",
+    "status": "stored",
+    "detail": "Stored decision (database) -> ID 70040e52",
+    "latency_ms": null
+  },
+  {
+    "n": 446,
+    "t": 1791811793.2159116,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Qdrant",
+    "status": "updated",
+    "detail": "Target decision 'Let's use PostgreSQL for the database.' status -> SUPERSEDED",
+    "latency_ms": null
+  },
+  {
+    "n": 447,
+    "t": 1791811793.2253838,
+    "time_str": "18:59:53",
+    "run": "e8a773",
+    "step": "Receipt",
+    "status": "issued",
+    "detail": "Receipt generated: \ud83d\udd04 Decision Changed - Decision changed. Before: \"Let's use PostgreSQL for the database.\". Now: \"We're going with MongoDB.\".",
+    "latency_ms": null
+  },
+  {
+    "n": 448,
+    "t": 1791811793.2641292,
+    "time_str": "18:59:53",
+    "run": "c3c565",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Receipts, forget about the report'",
+    "latency_ms": null
+  },
+  {
+    "n": 449,
+    "t": 1791811793.273244,
+    "time_str": "18:59:53",
+    "run": "c3c565",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 450,
+    "t": 1791811793.2809346,
+    "time_str": "18:59:53",
+    "run": "c3c565",
+    "step": "Extractor",
+    "status": "command",
+    "detail": {
+      "type": "forget_topic",
+      "topic": "the report"
+    },
+    "latency_ms": 0.1
+  },
+  {
+    "n": 451,
+    "t": 1791811793.3283331,
+    "time_str": "18:59:53",
+    "run": "c3c565",
+    "step": "Privacy",
+    "status": "ok",
+    "detail": "Forgotten 6 memories matching topic 'the report'",
+    "latency_ms": null
+  },
+  {
+    "n": 452,
+    "t": 1791811793.366898,
+    "time_str": "18:59:53",
+    "run": "ec885e",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'Don't remember anything from this conversation.'",
+    "latency_ms": null
+  },
+  {
+    "n": 453,
+    "t": 1791811793.3735573,
+    "time_str": "18:59:53",
+    "run": "ec885e",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 454,
+    "t": 1791811793.378939,
+    "time_str": "18:59:53",
+    "run": "ec885e",
+    "step": "Extractor",
+    "status": "command",
+    "detail": {
+      "type": "private_on"
+    },
+    "latency_ms": 0.1
+  },
+  {
+    "n": 455,
+    "t": 1791811793.3835819,
+    "time_str": "18:59:53",
+    "run": "ec885e",
+    "step": "Privacy",
+    "status": "ok",
+    "detail": "Private mode activated: incoming statements will not be recorded",
+    "latency_ms": null
+  },
+  {
+    "n": 456,
+    "t": 1791811793.3918579,
+    "time_str": "18:59:53",
+    "run": "b56fc3",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'I'll email Rahul tomorrow.'",
+    "latency_ms": null
+  },
+  {
+    "n": 457,
+    "t": 1791811793.3994722,
+    "time_str": "18:59:53",
+    "run": "b56fc3",
+    "step": "Privacy",
+    "status": "skipped",
+    "detail": "Session is in private mode; speech not stored",
+    "latency_ms": null
+  },
+  {
+    "n": 458,
+    "t": 1791811793.4230015,
+    "time_str": "18:59:53",
+    "run": "omi",
+    "step": "Omi Voice",
+    "status": "heard",
+    "detail": "Live voice transcript (u9): 'hi'",
+    "latency_ms": null
+  },
+  {
+    "n": 459,
+    "t": 1791811793.440363,
+    "time_str": "18:59:53",
+    "run": "omi",
+    "step": "Omi Voice",
+    "status": "heard",
+    "detail": "Conversation completed (u9): 'hi'",
+    "latency_ms": null
+  },
+  {
+    "n": 460,
+    "t": 1791811793.4485147,
+    "time_str": "18:59:53",
+    "run": "ab3553",
+    "step": "Omi",
+    "status": "ok",
+    "detail": "Spoken input received: 'hi'",
+    "latency_ms": null
+  },
+  {
+    "n": 461,
+    "t": 1791811793.4564562,
+    "time_str": "18:59:53",
+    "run": "ab3553",
+    "step": "Extractor",
+    "status": "processing",
+    "detail": "Extracting structured memory candidates...",
+    "latency_ms": null
+  },
+  {
+    "n": 462,
+    "t": 1791811793.4647155,
+    "time_str": "18:59:53",
+    "run": "ab3553",
     "step": "Extractor",
     "status": "ok",
     "detail": "Extracted 0 memory items: []",
