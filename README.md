@@ -8,11 +8,13 @@
 [![Lyzr Superflow](https://img.shields.io/badge/Lyzr-Superflow%20DAG-blueviolet?style=for-the-badge&logo=ai)](https://lyzr.ai)
 [![Qdrant Vector Engine](https://img.shields.io/badge/Qdrant-Stateful%20Memory-red?style=for-the-badge&logo=qdrant)](https://qdrant.tech)
 [![Omi Wearable](https://img.shields.io/badge/Omi-Continuous%20Voice-orange?style=for-the-badge)](https://omi.me)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online-success?style=for-the-badge&logo=railway)](https://receipts-production-1770.up.railway.app/)
 [![Tests Passing](https://img.shields.io/badge/Tests-33%2F33%20Passing-brightgreen?style=for-the-badge)](tests/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Production%20Ready-009688?style=for-the-badge&logo=fastapi)](receipts/)
 
 ---
 
+### 🌐 **Live Cloud Application:** [https://receipts-production-1770.up.railway.app](https://receipts-production-1770.up.railway.app)
 ### 🏆 Hackathon Grand Submission
 **The Dawn of the Autonomous AI Builder**  
 *Organized by Lyzr × Qdrant × Omi*  
